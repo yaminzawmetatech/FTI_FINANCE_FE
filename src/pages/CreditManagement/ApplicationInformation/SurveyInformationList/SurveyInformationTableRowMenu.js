@@ -1,0 +1,152 @@
+import * as React from "react";
+import { useState, useRef, useEffect } from "react";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { IconButton, MenuItem } from "@mui/material";
+import { MoreVert } from "@mui/icons-material";
+import openNewWindow from "../../../../utils/windowUtils";
+import EditIcon from "@mui/icons-material/Edit";
+import ConfirmationDialog from "../../../../components/ConfirmationDialog";
+import TableRowMenu from "../../../../components/TableRowMenu";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import { fetchMnetAttachments } from "features/application/applicationDetailSlice";
+import { checkLocked } from "features/application/applicationSlice";
+import { showErrorToast } from "common/ToastMessage";
+import CommonMessage from "common/CommonMessage";
+import { useDispatch, useSelector } from "react-redux";
+
+const SurveyInformationTableRowMenu = (props) => {
+  const dispatch = useDispatch();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const { data, deleteData, categoryName, category } = props;
+
+  const [openDeleteApplicationDialog, setOpenDeleteApplicationDialog] =
+    useState(false);
+
+  // const [openKpayNotificationModal, setOpenKpayNotificationModal] =
+  //   useState(false);
+  // const [selectedApplicationId, setSelectedApplicationId] = useState();
+
+  const auth = useSelector((state) => state.auth.user);
+
+  // const handleFetchMnetAttachments = async () => {
+  //   try {
+  //     const response = await dispatch(
+  //       fetchMnetAttachments({
+  //         uuid: data.uuid,
+  //         verbose: 0,
+  //       })
+  //     );
+
+  //     // Check if the action was successful
+  //     if (response.payload.success === true) {
+  //       console.log(
+  //         "Mnet Fetched Done. See log for details (storage/logs/mnetLog/mnet-oauth.log)."
+  //       );
+  //     }
+  //   } catch (e) {
+  //     console.error("Error", e);
+  //   } finally {
+  //   }
+  // };
+
+  const handleClick = (event) => {
+    event.stopPropagation();
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleEditClick = async () => {
+    handleClose();
+    if (auth.user_group === "CMCO" || auth.user_group === "Agent") {
+      openNewWindow(
+        `/CreditManagement/CreateApplicationInformation/${data?.application?.category?.name}/${data?.application?.category_id}/${data?.application?.uuid}/${data.application_id}`
+      );
+    } else {
+      const response = await dispatch(
+        checkLocked({
+          data: {
+            application_id: data.application?.id,
+          },
+        })
+      );
+      if (response?.payload?.data) {
+        if (response?.payload?.data?.response === true) {
+          openNewWindow(
+            `/CreditManagement/CreateApplicationInformation/${data?.application?.category?.name}/${data?.application?.category_id}/${data?.application?.uuid}/${data.application_id}`
+          );
+        } else {
+          showErrorToast(CommonMessage.MFE00020);
+        }
+      }
+    }
+  };
+
+  return (
+    <>
+      <ConfirmationDialog
+        open={openDeleteApplicationDialog}
+        onClose={() => {
+          setOpenDeleteApplicationDialog(false);
+        }}
+        onOk={async () => {
+          await deleteData(data);
+          setOpenDeleteApplicationDialog(false);
+        }}
+        title="Confirm Delete Application Information"
+        content="Are you sure you want to delete this Application Information?"
+      />
+      <IconButton
+        size="small"
+        id="basic-button"
+        aria-controls={open ? "basic-menuItem" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        sx={{
+          "& .MuiSvgIcon-root": {
+            fontSize: "1rem",
+          },
+        }}
+      >
+        <MoreVert />
+      </IconButton>
+      <TableRowMenu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            openNewWindow(
+              `/CreditManagement/CreateApplicationInformation/${data?.application?.category?.name}/${data?.application?.category_id}/${data?.application?.uuid}/${data.application_id}/view`
+            );
+          }}
+          disableRipple
+        >
+          <VisibilityOutlinedIcon />
+          View
+        </MenuItem>
+        {(category?.mob_status !== 1 ||
+          (category?.mob_status === 1 &&
+            ((auth.user_group !== "CMCO" && auth.user_group !== "CMCE" && auth.user_group !== "Agent")))) && (
+            <MenuItem onClick={handleEditClick} disableRipple>
+              <EditIcon />
+              Edit
+            </MenuItem>
+          )}
+      </TableRowMenu>
+    </>
+  );
+};
+
+export default React.memo(SurveyInformationTableRowMenu);

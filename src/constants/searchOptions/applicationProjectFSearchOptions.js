@@ -1,0 +1,22 @@
+export const APPLICATION_PROJECTF_SEARCH_OPTIONS = [
+  { id: "mnet_application_id", name: "MNet ID", type: "text_field" },
+  { id: "ids", name: "Application ID", type: "text_field" },
+  { id: "status_array", name: "Status", type: "autocomplete_status" },
+  { id: "approved_amount", name: "Approved Amount", type: "text_field" },
+  { id: "customer_web_category_name",name: "Customer Web Category Name", type: "text_field"},
+  { id: "applied_date", name: "Applied Date", type: "date" },
+  {
+    id: "sub_category_id",
+    name: "Sub Category",
+    type: "autocomplete_sub_category",
+  },
+  { id: "ihco", name: "IHCO", type: "autocomplete_ihco" },
+  { id: "applied_date", name: "Applied Date", type: "date" },
+  { id: "applicant_name", name: "Applicant Name", type: "text_field" },
+  { id: "nrc", name: "NRC", type: "text_field" },
+  { id: "living_phone_number", name: "Living Phone Number", type: "text_field" },
+  { id: "created_by", name: "Created By", type: "autocomplete_user" },
+  { id: "modified_by", name: "Modified By", type: "autocomplete_user" },
+  { id: "created_at", name: "Created Date", type: "date" },
+  { id: "modified_date", name: "Modified Date", type: "date" },
+];
