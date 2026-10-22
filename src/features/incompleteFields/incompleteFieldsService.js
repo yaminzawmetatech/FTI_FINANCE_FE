@@ -1,5 +1,4 @@
 import axiosInstance from "../api/axiosInstance";
-import {uuid} from "@tinymce/tinymce-react/lib/es2015/main/ts/Utils";
 
 const getIncompleteFields = async (id) => {
   const response = await axiosInstance.get(`incomplete-fields`, 

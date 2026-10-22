@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import incompleteFieldsService from './incompleteFieldsService';
-import {uuid} from "@tinymce/tinymce-react/lib/es2015/main/ts/Utils";
 
 // import Cookies from "js-cookie";
 const initialState = {

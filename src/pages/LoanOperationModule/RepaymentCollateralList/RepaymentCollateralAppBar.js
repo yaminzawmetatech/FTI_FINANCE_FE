@@ -12,7 +12,6 @@ import { useForm } from "react-hook-form";
 import FormInputSelect from "components/form/FormInputSelect";
 import SignatureCanvas from "react-signature-canvas";
 import CollateralListExcelExport from "./CollateralListExcelExport";
-import { use } from "react";
 
 const RepaymentCollateralAppBar = ({ selectedRows, users, user, applicationIds }) => {
 

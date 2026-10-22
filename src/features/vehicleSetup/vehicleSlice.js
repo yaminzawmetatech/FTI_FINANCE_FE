@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import VehicleService from "./VehicleService";
 import { uniqBy } from "lodash";
-import { message } from "../../../node_modules/antd/es/index";
 
 const initialState = {
   vehicles: [],
