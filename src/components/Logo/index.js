@@ -25,7 +25,7 @@ const LogoSection = ({ sx, to }) => {
       sx={sx}
     >
       {/*<Logo />*/}
-      <img src={companyLogo} alt="MOMOFINANCE" width={'100'} />
+      <img src={companyLogo} alt="Fotinos" width={'100'} />
     </ButtonBase>
   );
 };

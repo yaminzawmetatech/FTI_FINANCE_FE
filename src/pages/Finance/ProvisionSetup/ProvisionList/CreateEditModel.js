@@ -13,7 +13,7 @@ import FormInputNumber from "components/form/FormInputNumber";
 import FormInputSelect from "components/form/FormInputSelect";
 import { Backdrop, CircularProgress } from "../../../../../node_modules/@mui/material/index";
 import { useDispatch, useSelector } from "react-redux";
-import { getProvisionSetupByUuid, resetProvisionSetupDetails } from "features/provisionSetup/provisionSetupSlice";
+import { getProvisionSetupByUuid } from "features/provisionSetup/provisionSetupSlice";
 
 export const CreateEditModel = ({ createEditFormOpen, setCreateEditFormOpen, control, onSubmit, handleSubmit, isLoading, reset, getValues,
   editFlag, selectedData }) => {

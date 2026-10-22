@@ -24,7 +24,7 @@ const Logo = () => {
      *
      */
     <>
-        <img src={logo} alt="MOMOFINANCE" width="200" />
+        <img src={logo} alt="FOTINOS" width="200" />
 
     </>
     // <>

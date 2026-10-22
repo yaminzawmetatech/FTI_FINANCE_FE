@@ -30,7 +30,6 @@
 
 import axiosInstance from "../api/axiosInstance";
 import Cookies from 'js-cookie';
-import jwt from "jwt-decode";
 
 const API_URL = process.env.REACT_APP_API_URL;
 

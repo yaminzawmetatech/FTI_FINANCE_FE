@@ -12,10 +12,8 @@ import {
 // assets
 import {
   EditOutlined,
-  ProfileOutlined,
   LogoutOutlined,
   UserOutlined,
-  WalletOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 

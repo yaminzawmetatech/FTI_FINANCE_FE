@@ -8,7 +8,7 @@ import { showSuccessToast } from "common/ToastMessage";
 import CommonMessage from "common/CommonMessage";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteCollateralType, getAllCollateralTypes, getCollateralTypes } from "features/collateralTypesSetup/collateralTypesSetupSlice";
+import { deleteCollateralType, getAllCollateralTypes } from "features/collateralTypesSetup/collateralTypesSetupSlice";
 import CreateEditCollateralTypeModal from "./CreateEditCollateralModal";
 import TableRowMenu from "components/TableRowMenu";
 

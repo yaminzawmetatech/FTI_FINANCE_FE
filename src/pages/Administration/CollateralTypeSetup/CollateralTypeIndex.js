@@ -7,7 +7,7 @@ import Table from "components/Table";
 import { useSearchParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { VEHICLE_SEARCH_OPTIONS } from "constants/searchOptions/VehicleSearchOptions";
-import { getAllCo, getAllCollateralTypes, getAllCollateralTypesllateralTypes } from "features/collateralTypesSetup/collateralTypesSetupSlice";
+import { getAllCollateralTypes } from "features/collateralTypesSetup/collateralTypesSetupSlice";
 import CollateralTypeTableRowMenu from "./CollateralTypeTableRowMenu";
 import CollateralTypeAppBar from "./CollateralTypeAppBar";
 import { getProjectCategory } from "features/projectcategory/projectcategorySlice";
