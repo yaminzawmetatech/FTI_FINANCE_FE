@@ -29,7 +29,7 @@ export const CreateLastPaymentSetupModal = ({
   const dispatch = useDispatch();
   const { control, onSubmit, handleSubmit, reset } = useLastPaymentSetupForm();
 
-  const { projectCategories, isLoading } = useSelector(
+  const { projectCategories } = useSelector(
     (state) => state.projectCategories
   );
 

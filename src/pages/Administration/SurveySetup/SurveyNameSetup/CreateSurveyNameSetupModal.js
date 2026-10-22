@@ -51,18 +51,10 @@ export const CreateSurveyNameSetupModal = ({
 
   const {
     contactTypes,
-    isContactLoading,
-    isContactSuccess,
-    isContactError,
-    contactMessage,
   } = useSelector((state) => state.contactTypes);
 
   const {
     surveyTypes,
-    isSurveyLoading,
-    isSurveySuccess,
-    isSurveyError,
-    surveyMessage,
   } = useSelector((state) => state.surveyTypes);
 
   useEffect(() => {

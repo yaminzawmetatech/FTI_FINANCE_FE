@@ -43,28 +43,18 @@ const SurveyNameSetupIndex = () => {
   const {
     contactTypes,
     isContactLoading,
-    isContactSuccess,
-    isContactError,
-    contactMessage,
   } = useSelector((state) => state.contactTypes);
 
   const {
     projectCategories,
     isProjectLoading,
-    isProjectSuccess,
-    isProjectError,
-    projectMessage,
   } = useSelector((state) => state.projectCategories);
 
   const {
-    surveyTypes,
     isSurveyLoading,
-    isSurveySuccess,
-    isSurveyError,
-    surveyMessage,
   } = useSelector((state) => state.surveyTypes);
 
-  const { surveyHeaders, isLoading, isSuccess, isError, message } = useSelector(
+  const { surveyHeaders, isLoading,} = useSelector(
     (state) => state.surveyHeaders
   );
 
