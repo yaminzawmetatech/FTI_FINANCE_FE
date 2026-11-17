@@ -145,16 +145,6 @@ const EarlyTermination = ({
       lockPinned: true,
     },
     {
-      field: "mmf_id",
-      width: 150,
-      headerName: "Application ID",
-      sortable: true,
-      resizable: true,
-      pinned: "left",
-      lockPosition: "left",
-      lockPinned: true,
-    },
-    {
       headerCheckboxSelection: true,
       checkboxSelection: true,
       width: 50,

@@ -199,7 +199,6 @@ const OccupationalInformation = ({
     "name_of_emp_or_business",
     "detail_of_business",
     "title_position",
-    "mmf_income_data",
     "monthly_income",
     "estimate_monthly_income_ratio",
     "estimate_income_calculation_reference",
@@ -536,19 +535,6 @@ const OccupationalInformation = ({
                   />
                 </Grid>
               )}
-              {get(application_fields, "mmf_income_data") && (
-                <Grid item xs={12}>
-                  <FormInputText
-                    control={control}
-                    label="MMF Income Data"
-                    name="mmf_income_data"
-                    disabled={disabled}
-                    rules={{
-                      required: application_fields.mmf_income_data.required, // Set required dynamically
-                    }}
-                  />
-                </Grid>
-              )}
               {get(application_fields, "estimate_monthly_income") && (
                 <Grid item xs={12}>
                   <FormInputNumber
@@ -573,30 +559,6 @@ const OccupationalInformation = ({
                     rules={{
                       required:
                         application_fields.estimate_monthly_income_ratio
-                          .required,
-                    }}
-                  />
-                </Grid>
-              )}
-              {get(
-                application_fields,
-                "estimate_income_calculation_reference"
-              ) && (
-                <Grid item xs={12}>
-                  <FormInputSelect
-                    control={control}
-                    options={[
-                      { id: "MMF Data Reference" },
-                      { id: "IHCO Calculation" },
-                    ]}
-                    getOptionLabel={(option) => option?.id}
-                    id="id"
-                    label="Estimate Income Calculation Reference"
-                    name="estimate_income_calculation_reference"
-                    disabled={disabled}
-                    rules={{
-                      required:
-                        application_fields.estimate_income_calculation_reference
                           .required,
                     }}
                   />

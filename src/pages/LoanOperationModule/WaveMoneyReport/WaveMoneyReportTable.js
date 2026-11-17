@@ -209,13 +209,6 @@ const ReportTable = () => {
         resizable: true,
       },
       {
-        field: "nrc",
-        headerName: "MMF NRC",
-        width: 150,
-        sortable: true,
-        resizable: true,
-      },
-      {
         field: "date_of_birth",
         headerName: "DOB",
         width: 100,
@@ -409,32 +402,6 @@ const ReportTable = () => {
         width: 150,
         sortable: true,
         resizable: true,
-      },
-      {
-        field: "credit_assessment_result",
-        headerName: "MMF Loan Approval",
-        width: 130,
-        sortable: true,
-        resizable: true,
-        valueGetter: (params) => {
-          return (
-            params.data?.credit_assessment_result ?? params.data.status
-          );
-        },
-      },
-      {
-        field: "credit_assessment_date",
-        headerName: "MMF Loan Judgement Date",
-        width: 180,
-        sortable: true,
-        resizable: true,
-        valueGetter: (params) => {
-          return (
-            params.data?.contract?.disbursement_date ?? params.data.credit_assessment_date
-          );
-        },
-        valueFormatter: (params) =>
-          params.value && dayjs(params.value).format("YYYY-MM-DD hh:mm:ss A"),
       },
     ],
     []

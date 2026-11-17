@@ -197,7 +197,7 @@ const WriteOffListTableRowMenu = ({ data, writeOffBatchs }) => {
                 <Grid item xs={12}>
                   <FormInputCheckbox
                     control={control}
-                    label="MMF Internal Warning Sent"
+                    label="Internal Warning Sent"
                     name="check_two"
                     disabled={
                       mode === "view" ||
@@ -247,7 +247,7 @@ const WriteOffListTableRowMenu = ({ data, writeOffBatchs }) => {
                   <FormInputText
                     control={control}
                     name="remark_two"
-                    label="Remark - MMF Internal Warning Sent"
+                    label="Remark - Internal Warning Sent"
                     multiline
                     disabled={
                       mode === "view" ||

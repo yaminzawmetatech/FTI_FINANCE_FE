@@ -14,7 +14,6 @@ export const REMINDER_ALLOCATION_SEARCH_OPTIONS = [
   { id: "category_id", name: "Category", type: "autocomplete_category" },
   { id: "sub_category_id", name: "Sub Category", type: "autocomplete_sub_category" },
   { id: "loan_amount", name: "Loan Amount", type: "text_field" },
-  { id: "mmf_address_township_id", name: "MMF Township", type: "autocomplete_township" },
   { id: "mnet_township", name: "Partner Township", type: "text_field" },
   { id: "customer_category", name: "Customer Category", type: "text_field" },
   { id: "customer_id", name: "Customer ID", type: "text_field" },

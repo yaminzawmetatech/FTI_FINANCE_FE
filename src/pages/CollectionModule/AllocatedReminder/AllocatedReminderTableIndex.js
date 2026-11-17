@@ -564,13 +564,6 @@ const ReminderAllocationTable = () => {
         valueFormatter: CurrencyFormatter,
       },
       {
-        field: "contract.address_township.name",
-        headerName: "MMF Township",
-        width: 150,
-        sortable: true,
-        resizable: true,
-      },
-      {
         field: "contract.application.application_info.mnet_township", // or address township
         headerName: "Partner Township(Current)",
         width: 150,

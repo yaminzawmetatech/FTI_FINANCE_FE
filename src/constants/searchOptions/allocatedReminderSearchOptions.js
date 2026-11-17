@@ -19,7 +19,6 @@ export const ALLOCATED_REMINDER_SEARCH_OPTIONS = [
   { id: "category_id", name: "Category", type: "autocomplete_category" },
   { id: "sub_category_id", name: "Sub Category", type: "autocomplete_sub_category" },
   { id: "loan_amount", name: "Loan Amount", type: "text_field" },
-  { id: "mmf_address_township_id", name: "MMF Township", type: "autocomplete_township" },
   { id: "partner_address_township", name: "Partner Township", type: "text_field" },
   { id: "customer_category", name: "Customer Category", type: "text_field" },
   { id: "region", name: "Region", type: "autocomplete_state" },
