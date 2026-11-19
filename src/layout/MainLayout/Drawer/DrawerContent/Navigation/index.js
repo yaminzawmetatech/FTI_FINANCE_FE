@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 
 // project import
-import { getMenuApplicationSetups } from "../../../../../features/menuApplicationSetup/menuApplicationSetupSlice";
+import { getMenuApplicationSetups } from "modules/administration/slices/menuApplicationSetupSlice";
 import NavGroup from "./NavGroup";
 import menuItem from "menu-items";
 import { useDispatch, useSelector } from "react-redux";

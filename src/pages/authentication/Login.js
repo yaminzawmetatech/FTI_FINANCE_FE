@@ -13,7 +13,7 @@
 // import { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-// import { login } from "../../features/auth/authSlice";
+// import { login } from "modules/administration/slices/authSlice";
 // import Paper from "@mui/material/Paper";
 
 // function Login() {
@@ -188,7 +188,7 @@ import { useNavigate } from "react-router-dom";
 
 import Logo from "components/Logo";
 import AuthBackground from "assets/images/auth/AuthBackground";
-import { login } from "../../features/auth/authSlice";
+import { login } from "modules/administration/slices/authSlice";
 
 // ============================================================
 // THEME COLORS

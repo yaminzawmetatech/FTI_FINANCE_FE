@@ -95,7 +95,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
-import { DriveEtaRounded } from "../../node_modules/@mui/icons-material/index";
+import { DriveEtaRounded } from "@mui/icons-material";
 import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import GarageIcon from "@mui/icons-material/Garage";

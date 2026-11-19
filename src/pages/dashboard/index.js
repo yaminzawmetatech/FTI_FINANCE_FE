@@ -1,18 +1,18 @@
 import { Grid, Typography, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getApplicationStatusCount } from "../../features/application/applicationSlice";
+import { getApplicationStatusCount } from "modules/credit-management/slices/applicationSlice";
 import {
   getInHouseSurveyCount,
   getFieldSurveyCount,
-} from "../../features/surveryResult/surveyResultSlice";
+} from "modules/credit-management/slices/surveyResultSlice";
 import { useNavigate, useParams } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import AccordionList from "./AccordionList";
 import AllAccordionList from "./AllAccordionList";
 import dayjs from "dayjs";
 import FromDateToDate from "./FromDateToDate";
-import LoanModuleDashboardIndex from "../../pages/LoanOperationModule/Dashboard";
+import LoanModuleDashboardIndex from "../../modules/loan-operation/pages/LoanOperationModule/Dashboard";
 import {
   getMobApplicationsCount,
   getMobContractsCount,
@@ -20,7 +20,7 @@ import {
   getMobRemindersCount,
   getMobSaleInvoicesCount,
   getMobSurveysCount,
-} from "features/mobCounts/mobCountSlice";
+} from "modules/credit-management/slices/mobCountSlice";
 import CMCOAccordionList from "./CMCOAccordionList";
 
 const DashboardDefault = () => {

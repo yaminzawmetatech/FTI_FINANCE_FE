@@ -1,0 +1,9 @@
+{
+  "id": "customer-c",
+  "name": "Customer C",
+  "modules": [
+    "administration",
+    "collection",
+    "finance"
+  ]
+}

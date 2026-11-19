@@ -5,7 +5,7 @@ import { Feed } from "@mui/icons-material";
 import {
   getAllCreditCriteria,
   getLatestCreditCriteria,
-} from "features/creditCriteria/creditCriteriaSlice";
+} from "modules/credit-management/slices/creditCriteriaSlice";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -37,8 +37,8 @@ const AccordionList = ({
   //   setSurveyData(optimizedArray);
   // }, [surveyStatusCount.completed, surveyStatusCount]);
 
-  const { latestCreditCriteria } = useSelector(
-    (state) => state.latestCreditCriteria
+  const latestCreditCriteria = useSelector(
+    (state) => state.creditCriteria?.latestCreditCriteria ?? []
   );
 
   useEffect(() => {

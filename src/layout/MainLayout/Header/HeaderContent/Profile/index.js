@@ -20,7 +20,7 @@ import {
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout, reset } from '../../../../../features/auth/authSlice'
+import { logout, reset } from 'modules/administration/slices/authSlice'
 
 
 // project import
@@ -31,7 +31,7 @@ import SettingTab from './SettingTab';
 
 
 // assets
-import avatar3 from 'assets/images/users/avator3.jpg';
+import avatar3 from "assets/images/users/avator3.jpg";
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
  

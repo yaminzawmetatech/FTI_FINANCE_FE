@@ -2,24 +2,24 @@ import { lazy } from "react";
 
 // project import
 import Loadable from "components/Loadable";
-import DocumentTypeSetupIndex from "../pages/Administration/DocumentTypeSetup/DocumentTypeSetupIndex";
-import ProjectCategoryIndex from "../pages/Administration/ProjectCategory/ProductCategoryList";
-import BlackListCustomerSetupIndex from "../pages/Administration/BlackListCustomerSetup/BlackListCustomerSetupIndex";
-import CreateBlackListCustomerSetup from "../pages/Administration/BlackListCustomerSetup/CreateBlackListCustomerSetup";
-import EditBlackListCustomerSetup from "../pages/Administration/BlackListCustomerSetup/EditBlackListCustomerSetup";
-import PermissionSetsList from "../pages/Administration/PermissionSets/PermissionSetsList";
-import UserGroupListing from "../pages/Administration/UserGroup/UserGroupListing";
-import TypeofBusinessList from "pages/Administration/TypeofBusiness/TypeofBusinessList";
-import SubBusinessCategoryList from "pages/Administration/SubBusinessCategory/SubBusinessCategoryList";
+import DocumentTypeSetupIndex from "../modules/administration/pages/Administration/DocumentTypeSetup/DocumentTypeSetupIndex";
+import ProjectCategoryIndex from "../modules/administration/pages/Administration/ProjectCategory/ProductCategoryList";
+import BlackListCustomerSetupIndex from "../modules/collection/setup/BlackListCustomerSetup/BlackListCustomerSetupIndex";
+import CreateBlackListCustomerSetup from "../modules/collection/setup/BlackListCustomerSetup/CreateBlackListCustomerSetup";
+import EditBlackListCustomerSetup from "../modules/collection/setup/BlackListCustomerSetup/EditBlackListCustomerSetup";
+import PermissionSetsList from "../modules/administration/pages/Administration/PermissionSets/PermissionSetsList";
+import UserGroupListing from "../modules/administration/pages/Administration/UserGroup/UserGroupListing";
+import TypeofBusinessList from "modules/administration/pages/Administration/TypeofBusiness/TypeofBusinessList";
+import SubBusinessCategoryList from "modules/administration/pages/Administration/SubBusinessCategory/SubBusinessCategoryList";
 import MainLayout from "../layout/MainLayout";
-import SurveyResultList from "pages/CreditManagement/SurveyResultList/SurveyResultList";
-import AssementList from "pages/CreditManagement/AssementList/AssementListIndex";
-import ApplicationInfrmationSetupList from "pages/Administration/ApplicationInformationSetupList/ApplicationInformationSetupList";
-import CustomerList from "pages/CreditManagement/CustomerList/CustomerListIndex";
-import ProjectFDashboardIndex from "pages/CreditManagement/Dashboard/ProjectFDashboardIndex";
+import SurveyResultList from "modules/credit-management/pages/CreditManagement/SurveyResultList/SurveyResultList";
+import AssementList from "modules/credit-management/pages/CreditManagement/AssementList/AssementListIndex";
+import ApplicationInfrmationSetupList from "modules/credit-management/setup/ApplicationInformationSetupList/ApplicationInformationSetupList";
+import CustomerList from "modules/credit-management/pages/CreditManagement/CustomerList/CustomerListIndex";
+import ProjectFDashboardIndex from "modules/credit-management/pages/CreditManagement/Dashboard/ProjectFDashboardIndex";
 import { element } from "prop-types";
-import InitialPaymentCalIndex from "pages/LoanOperationModule/InitialPaymentCalculation/InitialPaymentCalIndex";
-import VehicleInfoIndex from "pages/LoanOperationModule/VehicleInfo/VehicleInfoIndex";
+import InitialPaymentCalIndex from "modules/loan-operation/pages/LoanOperationModule/InitialPaymentCalculation/InitialPaymentCalIndex";
+import VehicleInfoIndex from "modules/loan-operation/pages/LoanOperationModule/VehicleInfo/VehicleInfoIndex";
 
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import("pages/dashboard")));
@@ -41,63 +41,63 @@ const AntIcons = Loadable(
 );
 
 const Department = Loadable(
-  lazy(() => import("pages/Administration/Department/DepartmentList"))
+  lazy(() => import("modules/administration/pages/Administration/Department/DepartmentList"))
 );
 const Position = Loadable(
-  lazy(() => import("pages/Administration/Position/PositionList"))
+  lazy(() => import("modules/administration/pages/Administration/Position/PositionList"))
 );
-const Bank = Loadable(lazy(() => import("pages/Administration/Bank/BankList")));
+const Bank = Loadable(lazy(() => import("modules/administration/pages/Administration/Bank/BankList")));
 
 
-const CustomerBank = Loadable(lazy(() => import("pages/Administration/CustomerBankSetUp/CustomerBankIndex")));
+const CustomerBank = Loadable(lazy(() => import("modules/administration/pages/Administration/CustomerBankSetUp/CustomerBankIndex")));
 
 
 const SubCategory = Loadable(
-  lazy(() => import("pages/Administration/SubCategory/SubCategoryList"))
+  lazy(() => import("modules/administration/pages/Administration/SubCategory/SubCategoryList"))
 );
 const FirstDueDateSetup = Loadable(
-  lazy(() => import("pages/Administration/FirstDueDateSetup/FirstDueDateSetupList"))
+  lazy(() => import("modules/loan-operation/setup/FirstDueDateSetup/FirstDueDateSetupList"))
 );
 const NumberSeries = Loadable(
-  lazy(() => import("pages/Administration/NumberSeries/NumberSeriesList"))
+  lazy(() => import("modules/administration/pages/Administration/NumberSeries/NumberSeriesList"))
 );
 const NRCStateIndex = Loadable(
-  lazy(() => import("pages/Administration/NRC/NRCState/NRCStateIndex"))
+  lazy(() => import("modules/administration/pages/Administration/NRC/NRCState/NRCStateIndex"))
 );
 const NRCTownshipIndex = Loadable(
-  lazy(() => import("pages/Administration/NRC/NRCTownship/NRCTownshipIndex"))
+  lazy(() => import("modules/administration/pages/Administration/NRC/NRCTownship/NRCTownshipIndex"))
 );
 const TableSetup = Loadable(
-  lazy(() => import("pages/Administration/TableSetup/TableSetupIndex"))
+  lazy(() => import("modules/administration/pages/Administration/TableSetup/TableSetupIndex"))
 );
 const DocumentAttachIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/DocumentAttachTable/DocumentAttachIndex")
+    import("modules/administration/pages/Administration/DocumentAttachTable/DocumentAttachIndex")
   )
 );
 
 const SignerList = Loadable(
-  lazy(() => import("pages/Administration/Signer/SignerList"))
+  lazy(() => import("modules/administration/pages/Administration/Signer/SignerList"))
 );
 
 const DueDateList = Loadable(
-  lazy(() => import("pages/Administration/DueDateSetup/DueDateList"))
+  lazy(() => import("modules/administration/pages/Administration/DueDateSetup/DueDateList"))
 );
 
 const BillingDateList = Loadable(
   lazy(() =>
-    import("pages/Administration/BillingDateRegistration/BillingDateList")
+    import("modules/loan-operation/setup/BillingDateRegistration/BillingDateList")
   )
 );
 
 const DisbursementList = Loadable(
-  lazy(() => import("pages/Administration/Disbursement/DisbursementList"))
+  lazy(() => import("modules/loan-operation/setup/Disbursement/DisbursementList"))
 );
 
 const MainBusinessCategoryList = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/MainBusinessCategory/MainBusinessCategoryIndex"
+      "modules/administration/pages/Administration/MainBusinessCategory/MainBusinessCategoryIndex"
     )
   )
 );
@@ -105,22 +105,22 @@ const MainBusinessCategoryList = Loadable(
 const ApplicationInformation = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationInformationList/ApplicationInformationListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationInformationList/ApplicationInformationListIndex"
     )
   )
 );
-//const PermissionSets = Loadable(lazy(() => import("pages/Administration/PermissionSets/PermissionSetsList")))
+//const PermissionSets = Loadable(lazy(() => import("modules/administration/pages/Administration/PermissionSets/PermissionSetsList")))
 const CreateApplicationInformationIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/CreateApplicationInformation/CreateApplicationInformationIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/CreateApplicationInformation/CreateApplicationInformationIndex"
     )
   )
 );
 const ApplicationAttachment = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationAttachment/ApplicationAttachmentIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationAttachment/ApplicationAttachmentIndex"
     )
   )
 );
@@ -128,7 +128,7 @@ const ApplicationAttachment = Loadable(
 const ContractAttachment = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/Contract/ContractAttachment/ContractAttachmentIndex"
+      "modules/loan-operation/pages/LoanOperationModule/Contract/ContractAttachment/ContractAttachmentIndex"
     )
   )
 );
@@ -136,48 +136,48 @@ const ContractAttachment = Loadable(
 const CreateApplicationInformationSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/ApplicationInformationSetup/CreateApplicationInformationSetup"
+      "modules/credit-management/setup/ApplicationInformationSetup/CreateApplicationInformationSetup"
     )
   )
 );
 
 const CreateContractFormSetup = Loadable(
   lazy(() =>
-    import("pages/Administration/ContractForm/CreateContractFormSetup")
+    import("modules/loan-operation/setup/ContractForm/CreateContractFormSetup")
   )
 );
 
 const AddressStateIndex = Loadable(
-  lazy(() => import("pages/Administration/Address/State/AddressStateIndex"))
+  lazy(() => import("modules/administration/pages/Administration/Address/State/AddressStateIndex"))
 );
 const AddressDistrictIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/Address/District/AddressDistrictIndex")
+    import("modules/administration/pages/Administration/Address/District/AddressDistrictIndex")
   )
 );
 const AddressTownshipIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/Address/Township/AddressTownshipIndex")
+    import("modules/administration/pages/Administration/Address/Township/AddressTownshipIndex")
   )
 );
 const AddressCityIndex = Loadable(
-  lazy(() => import("pages/Administration/Address/City/AddressCityIndex"))
+  lazy(() => import("modules/administration/pages/Administration/Address/City/AddressCityIndex"))
 );
 const AddressWardIndex = Loadable(
-  lazy(() => import("pages/Administration/Address/Ward/AddressWardIndex"))
+  lazy(() => import("modules/administration/pages/Administration/Address/Ward/AddressWardIndex"))
 );
 const AddressVillageTractIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/Address/VillageTract/AddressVillageTractIndex")
+    import("modules/administration/pages/Administration/Address/VillageTract/AddressVillageTractIndex")
   )
 );
 const AddressVillageIndex = Loadable(
-  lazy(() => import("pages/Administration/Address/Village/AddressVillageIndex"))
+  lazy(() => import("modules/administration/pages/Administration/Address/Village/AddressVillageIndex"))
 );
 const InHouseSurveyIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/InHouseSurvey/InHouseSurveyIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/InHouseSurvey/InHouseSurveyIndex"
     )
   )
 );
@@ -185,27 +185,27 @@ const InHouseSurveyIndex = Loadable(
 const SurveyListInHouseSurvey = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/SurveyResultList/InHouseSurvey/InHouseSurveyIndex"
+      "modules/credit-management/pages/CreditManagement/SurveyResultList/InHouseSurvey/InHouseSurveyIndex"
     )
   )
 );
 
 const SurveyNameSetup = Loadable(
   lazy(() =>
-    import("pages/Administration/SurveySetup/SurveyNameSetup/SurveyNameSetup")
+    import("modules/credit-management/setup/SurveySetup/SurveyNameSetup/SurveyNameSetup")
   )
 );
 const SurveyQuestionSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/SurveySetup/SurveyQuestionSetup/SurveyQuestionSetup"
+      "modules/credit-management/setup/SurveySetup/SurveyQuestionSetup/SurveyQuestionSetup"
     )
   )
 );
 const DownPaymentSchemeSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/DownPaymentSchemeSetup/DownPaymentSchemeSetupList"
+      "modules/loan-operation/setup/DownPaymentSchemeSetup/DownPaymentSchemeSetupList"
     )
   )
 );
@@ -213,7 +213,7 @@ const DownPaymentSchemeSetup = Loadable(
 const ApplicationAssessmentListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationAssessment/ApplicationAssessmentList/ApplicationAssessmentListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationAssessment/ApplicationAssessmentList/ApplicationAssessmentListIndex"
     )
   )
 );
@@ -221,7 +221,7 @@ const ApplicationAssessmentListIndex = Loadable(
 const ApplicationGuarantorListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationGuarantor/ApplicationGuarantorList/ApplicationGuarantorListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationGuarantor/ApplicationGuarantorList/ApplicationGuarantorListIndex"
     )
   )
 );
@@ -229,7 +229,7 @@ const ApplicationGuarantorListIndex = Loadable(
 const ApplicationCollateralListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationCollateral/ApplicationCollateralList/ApplicationCollateralListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationCollateral/ApplicationCollateralList/ApplicationCollateralListIndex"
     )
   )
 );
@@ -237,7 +237,7 @@ const ApplicationCollateralListIndex = Loadable(
 const ApplicationReferenceListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationReference/ApplicationReferenceList/ApplicationReferenceListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationReference/ApplicationReferenceList/ApplicationReferenceListIndex"
     )
   )
 );
@@ -245,7 +245,7 @@ const ApplicationReferenceListIndex = Loadable(
 const ApplicationJointApplicantListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationJointApplicant/ApplicationJointApplicantList/JointApplicantListIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationJointApplicant/ApplicationJointApplicantList/JointApplicantListIndex"
     )
   )
 );
@@ -253,7 +253,7 @@ const ApplicationJointApplicantListIndex = Loadable(
 const EditApplicationAssessment = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationAssessment/EditApplicationAssessment/EditApplicationAssessment"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationAssessment/EditApplicationAssessment/EditApplicationAssessment"
     )
   )
 );
@@ -261,7 +261,7 @@ const EditApplicationAssessment = Loadable(
 const CreateApplicationGuarantor = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationGuarantor/CreateEditViewGuarantor/ApplicationGuarantorIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationGuarantor/CreateEditViewGuarantor/ApplicationGuarantorIndex"
     )
   )
 );
@@ -269,7 +269,7 @@ const CreateApplicationGuarantor = Loadable(
 const CreateApplicationCollateral = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationCollateral/CreateEditViewCollateral/ApplicationCollateralIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationCollateral/CreateEditViewCollateral/ApplicationCollateralIndex"
     )
   )
 );
@@ -277,7 +277,7 @@ const CreateApplicationCollateral = Loadable(
 const CreateApplicationReference = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationReference/CreateEditViewReference/ApplicationReferenceIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationReference/CreateEditViewReference/ApplicationReferenceIndex"
     )
   )
 );
@@ -285,42 +285,42 @@ const CreateApplicationReference = Loadable(
 const CreateApplicationJointApplicant = Loadable(
   lazy(() =>
     import(
-      "pages/CreditManagement/ApplicationInformation/ApplicationJointApplicant/CreateEditViewJointApplicant/ApplicationJointApplicantIndex"
+      "modules/credit-management/pages/CreditManagement/ApplicationInformation/ApplicationJointApplicant/CreateEditViewJointApplicant/ApplicationJointApplicantIndex"
     )
   )
 );
 
 const DetailApplicationAssementList = Loadable(
   lazy(() =>
-    import("pages/CreditManagement/AssementList/DetailApplicationAssessment")
+    import("modules/credit-management/pages/CreditManagement/AssementList/DetailApplicationAssessment")
   )
 );
 
 const CustomerDetail = Loadable(
-  lazy(() => import("pages/CreditManagement/CustomerList/CustomerDetailIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/CustomerList/CustomerDetailIndex"))
 );
 
 const Workflow = Loadable(
-  lazy(() => import("pages/Administration/Workflow/WorkflowList"))
+  lazy(() => import("modules/administration/pages/Administration/Workflow/WorkflowList"))
 );
 const ApprovalWorkflow = Loadable(
   lazy(() =>
-    import("pages/Administration/ApprovalWorkflow/ApprovalWorkflowList")
+    import("modules/administration/pages/Administration/ApprovalWorkflow/ApprovalWorkflowList")
   )
 );
 
 const CreateNewUserGroup = Loadable(
-  lazy(() => import("pages/Administration/UserGroup/CreateEditUserGroup"))
+  lazy(() => import("modules/administration/pages/Administration/UserGroup/CreateEditUserGroup"))
 );
 
 const UsersList = Loadable(
-  lazy(() => import("pages/Administration/Users/UsersList"))
+  lazy(() => import("modules/administration/pages/Administration/Users/UsersList"))
 );
 
 const CreateContractAgreementSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/ContractAggrementSetup/CreateContractAggrementSetup/CreateContractAgreementSetup"
+      "modules/loan-operation/setup/ContractAggrementSetup/CreateContractAggrementSetup/CreateContractAgreementSetup"
     )
   )
 );
@@ -328,7 +328,7 @@ const CreateContractAgreementSetup = Loadable(
 const ContractAgreementSetupList = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/ContractAggrementSetup/ContractAggrementSetupList/ContractAgreementSetupListIndex"
+      "modules/loan-operation/setup/ContractAggrementSetup/ContractAggrementSetupList/ContractAgreementSetupListIndex"
     )
   )
 );
@@ -336,7 +336,7 @@ const ContractAgreementSetupList = Loadable(
 const CreateDemandLetterSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/DemandLetterSetup/CreateDemandLetterSetup/CreateDemandLetterSetup"
+      "modules/collection/setup/DemandLetterSetup/CreateDemandLetterSetup/CreateDemandLetterSetup"
     )
   )
 );
@@ -344,27 +344,27 @@ const CreateDemandLetterSetup = Loadable(
 const DemandLetterSetupList = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/DemandLetterSetup/DemandLetterSetupList/DemandLetterSetupListIndex"
+      "modules/collection/setup/DemandLetterSetup/DemandLetterSetupList/DemandLetterSetupListIndex"
     )
   )
 );
 
 const ApprovedApplicationListIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/SetDisbursement/SetDisbursedTableIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/SetDisbursement/SetDisbursedTableIndex")
   )
 );
 
 const SMSGenerateForLoanSkipTableIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/SMSGenerateForLoanSkip/SMSGenerateForLoanSkipTableIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/SMSGenerateForLoanSkip/SMSGenerateForLoanSkipTableIndex")
   )
 );
 
 const PrepareForContractTableIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/PrepareForContract/PrepareForContractList/PrepareForContractTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/PrepareForContract/PrepareForContractList/PrepareForContractTableIndex"
     )
   )
 );
@@ -372,7 +372,7 @@ const PrepareForContractTableIndex = Loadable(
 const LoanOperationApplicationListDashboard = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/Dashboard/LoanApplicationListDashboard"
+      "modules/loan-operation/pages/LoanOperationModule/Dashboard/LoanApplicationListDashboard"
     )
   )
 );
@@ -380,25 +380,25 @@ const LoanOperationApplicationListDashboard = Loadable(
 const LoanOperationApplicationListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/LoanOperationApplicationInformationList/LoanOperationApplicationInformationListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/LoanOperationApplicationInformationList/LoanOperationApplicationInformationListIndex"
     )
   )
 );
 
 const GenerateLedgerListIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/GenerateLedger/GenerateLedgerTableIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/GenerateLedger/GenerateLedgerTableIndex")
   )
 );
 
 const UserProfileIndex = Loadable(
-  lazy(() => import("pages/Administration/Users/UserProfileIndex"))
+  lazy(() => import("modules/administration/pages/Administration/Users/UserProfileIndex"))
 );
 
 const ContractListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/Contract/ContractInformationList/ContractTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/Contract/ContractInformationList/ContractTableIndex"
     )
   )
 );
@@ -406,7 +406,7 @@ const ContractListIndex = Loadable(
 const ExceedPaymetIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CollectionModule/ExceedPayment/ExceedPaymentIndex"
+      "modules/collection/pages/CollectionModule/ExceedPayment/ExceedPaymentIndex"
     )
   )
 );
@@ -414,7 +414,7 @@ const ExceedPaymetIndex = Loadable(
 const UpdateVehicleInformationIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/UpdateVehicleInformaton/UpdateVehicleInformationIndex"
+      "modules/loan-operation/pages/LoanOperationModule/UpdateVehicleInformaton/UpdateVehicleInformationIndex"
     )
   )
 );
@@ -422,7 +422,7 @@ const UpdateVehicleInformationIndex = Loadable(
 const RequestForBookingIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/RequestForBooking/RequestForBookingList/RequestForBookingTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/RequestForBooking/RequestForBookingList/RequestForBookingTableIndex"
     )
   )
 );
@@ -430,7 +430,7 @@ const RequestForBookingIndex = Loadable(
 const BookingProcessesIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/BookingProcess/BookingProcessList/BookingProcessTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/BookingProcess/BookingProcessList/BookingProcessTableIndex"
     )
   )
 );
@@ -438,7 +438,7 @@ const BookingProcessesIndex = Loadable(
 const BookingProcessesHistoryIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/BookingProcess/BookingProcessHistoryList/BookingProcessHistoryTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/BookingProcess/BookingProcessHistoryList/BookingProcessHistoryTableIndex"
     )
   )
 );
@@ -446,7 +446,7 @@ const BookingProcessesHistoryIndex = Loadable(
 const RequestForDisbursementTableIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPayment/RequestForDisursementList/RequestForDisursementTableIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPayment/RequestForDisursementList/RequestForDisursementTableIndex"
     )
   )
 );
@@ -454,7 +454,7 @@ const RequestForDisbursementTableIndex = Loadable(
 const DisbursementPaymentList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPayment/DisbursementPayment/DisbursementPaymentsListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPayment/DisbursementPayment/DisbursementPaymentsListIndex"
     )
   )
 );
@@ -462,7 +462,7 @@ const DisbursementPaymentList = Loadable(
 const EditContractIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/Contract/ContractDetail/EditContractIndex"
+      "modules/loan-operation/pages/LoanOperationModule/Contract/ContractDetail/EditContractIndex"
     )
   )
 );
@@ -470,7 +470,7 @@ const EditContractIndex = Loadable(
 const EditWriteOffRepaymentContractIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/Contract/WriteOffRepaymentContractDetail/EditWriteOffRepaymentContractIndex"
+      "modules/loan-operation/pages/LoanOperationModule/Contract/WriteOffRepaymentContractDetail/EditWriteOffRepaymentContractIndex"
     )
   )
 );
@@ -478,7 +478,7 @@ const EditWriteOffRepaymentContractIndex = Loadable(
 const EditPrepareForContractIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/PrepareForContract/PrepareForContractDetail/EditPrepareForContractIndex"
+      "modules/loan-operation/pages/LoanOperationModule/PrepareForContract/PrepareForContractDetail/EditPrepareForContractIndex"
     )
   )
 );
@@ -486,7 +486,7 @@ const EditPrepareForContractIndex = Loadable(
 const StampDutyPaymentList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/StampDutyPayment/StampDutyPaymentListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/StampDutyPayment/StampDutyPaymentListIndex"
     )
   )
 );
@@ -494,7 +494,7 @@ const StampDutyPaymentList = Loadable(
 const CollateralList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/CollateralList/CollateralListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/CollateralList/CollateralListIndex"
     )
   )
 );
@@ -502,7 +502,7 @@ const CollateralList = Loadable(
 const CollateralLicenseList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/CollateralLicenseList/CollateralLicenseListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/CollateralLicenseList/CollateralLicenseListIndex"
     )
   )
 );
@@ -510,7 +510,7 @@ const CollateralLicenseList = Loadable(
 const CollateralInsuranceList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/CollateralInsuranceList/CollateralInsuranceListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/CollateralInsuranceList/CollateralInsuranceListIndex"
     )
   )
 );
@@ -518,7 +518,7 @@ const CollateralInsuranceList = Loadable(
 const CollateralRepaymentList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/RepaymentCollateralList/RepaymentCollateralListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/RepaymentCollateralList/RepaymentCollateralListIndex"
     )
   )
 );
@@ -526,7 +526,7 @@ const CollateralRepaymentList = Loadable(
 const InsurancePaymentList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/InsurancePayment/InsurancePaymentListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/InsurancePayment/InsurancePaymentListIndex"
     )
   )
 );
@@ -534,7 +534,7 @@ const InsurancePaymentList = Loadable(
 const DisbursementPaymentHistoryList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPaymentHistory/DisbursementPaymentHistoryListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPaymentHistory/DisbursementPaymentHistoryListIndex"
     )
   )
 );
@@ -542,7 +542,7 @@ const DisbursementPaymentHistoryList = Loadable(
 const StampDutySettlementList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/StampDutySettlement/StampDutySettlementListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/StampDutySettlement/StampDutySettlementListIndex"
     )
   )
 );
@@ -550,7 +550,7 @@ const StampDutySettlementList = Loadable(
 const StampDutyPaymentByBatchIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/StampDutyPaymentByBatch/StampDutyPaymentIndex"
+      "modules/loan-operation/pages/LoanOperationModule/StampDutyPaymentByBatch/StampDutyPaymentIndex"
     )
   )
 );
@@ -558,7 +558,7 @@ const StampDutyPaymentByBatchIndex = Loadable(
 const InsurancePaymentByBatchIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/insurancePaymentByBatch/InsurancePaymentIndex"
+      "modules/loan-operation/pages/LoanOperationModule/insurancePaymentByBatch/InsurancePaymentIndex"
     )
   )
 );
@@ -566,7 +566,7 @@ const InsurancePaymentByBatchIndex = Loadable(
 const DisbursementPaymentByBatchIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPayment/DisbursementPaymentByBatch/DisbursementPaymentIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPayment/DisbursementPaymentByBatch/DisbursementPaymentIndex"
     )
   )
 );
@@ -574,7 +574,7 @@ const DisbursementPaymentByBatchIndex = Loadable(
 const BookingProcessIndex = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/BookingProcess/BookingProcess/BookingProcessIndex"
+      "modules/loan-operation/pages/LoanOperationModule/BookingProcess/BookingProcess/BookingProcessIndex"
     )
   )
 );
@@ -582,20 +582,20 @@ const BookingProcessIndex = Loadable(
 const RequestForDisbursement = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPayment/RequestForDisursement/RequestForDisbursementIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPayment/RequestForDisursement/RequestForDisbursementIndex"
     )
   )
 );
 
 const AccountCodeIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/CashDepositSetup/AccountCode/AccountCodeIndex")
+    import("modules/finance/setup/CashDepositSetup/AccountCode/AccountCodeIndex")
   )
 );
 const StampDutyBatchList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/StampDutyPaymentBatch/StampDutyBatchListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/StampDutyPaymentBatch/StampDutyBatchListIndex"
     )
   )
 );
@@ -603,7 +603,7 @@ const StampDutyBatchList = Loadable(
 const InsuranceBatchList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/InsurancePaymentBatch/InsuranceBatchListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/InsurancePaymentBatch/InsuranceBatchListIndex"
     )
   )
 );
@@ -611,7 +611,7 @@ const InsuranceBatchList = Loadable(
 const DisbursementBatchList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/DisbursementPayment/DisbursementPaymentBatch/DisbursementBatchListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/DisbursementPayment/DisbursementPaymentBatch/DisbursementBatchListIndex"
     )
   )
 );
@@ -619,7 +619,7 @@ const DisbursementBatchList = Loadable(
 const CashDepositProcessList = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/CashDepositProcessAndAccount/CashDepositProcessList/CashDepositProcessListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/CashDepositProcessAndAccount/CashDepositProcessList/CashDepositProcessListIndex"
     )
   )
 );
@@ -627,7 +627,7 @@ const CashDepositProcessList = Loadable(
 const CreateCashDeposit = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/CashDepositProcessAndAccount/CreateCashDeposit/CashDepositProcessIndex"
+      "modules/loan-operation/pages/LoanOperationModule/CashDepositProcessAndAccount/CreateCashDeposit/CashDepositProcessIndex"
     )
   )
 );
@@ -635,7 +635,7 @@ const CreateCashDeposit = Loadable(
 const GeneralLedgerEntry = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/GeneralLedgerEntry/GeneralLedgerEntryListIndex"
+      "modules/loan-operation/pages/LoanOperationModule/GeneralLedgerEntry/GeneralLedgerEntryListIndex"
     )
   )
 );
@@ -644,7 +644,7 @@ const GeneralLedgerEntry = Loadable(
 const CollateralTypeSetup = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/CollateralTypeSetup/CollateralTypeIndex"
+      "modules/administration/pages/Administration/CollateralTypeSetup/CollateralTypeIndex"
     )
   )
 );
@@ -653,7 +653,7 @@ const CollateralTypeSetup = Loadable(
 const ActualPaymentLines = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/ActualPaymentLines/ActualPaymentLinesTable"
+      "modules/loan-operation/pages/LoanOperationModule/ActualPaymentLines/ActualPaymentLinesTable"
     )
   )
 );
@@ -661,7 +661,7 @@ const ActualPaymentLines = Loadable(
 const WaveMoneyReport = Loadable(
   lazy(() =>
     import(
-      "pages/LoanOperationModule/WaveMoneyReport/WaveMoneyReportTable"
+      "modules/loan-operation/pages/LoanOperationModule/WaveMoneyReport/WaveMoneyReportTable"
     )
   )
 );
@@ -670,21 +670,21 @@ const WaveMoneyReport = Loadable(
 const EarlyTerminationFeesSetupListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/Administration/EarlyTerminationFeesSetup/EarlyTerminationFeesSetupList"
+      "modules/collection/setup/EarlyTerminationFeesSetup/EarlyTerminationFeesSetupList"
     )
   )
 );
 
 const CollectionFeesSetupListIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/CollectionFeesSetup/CollectionFeesSetupList")
+    import("modules/collection/setup/CollectionFeesSetup/CollectionFeesSetupList")
   )
 );
 
 const EarlyTerminationProcessListIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CollectionModule/EarlyTerminationProcess/EarlyTerminationProcessList/EarlyTerminationProcessListIndex"
+      "modules/collection/pages/CollectionModule/EarlyTerminationProcess/EarlyTerminationProcessList/EarlyTerminationProcessListIndex"
     )
   )
 );
@@ -692,380 +692,380 @@ const EarlyTerminationProcessListIndex = Loadable(
 const CreateEarlyTerminationProcess = Loadable(
   lazy(() =>
     import(
-      "pages/CollectionModule/EarlyTerminationProcess/CreateEarlyTerminationProcess/CreateEarlyTerminationProcessIndex"
+      "modules/collection/pages/CollectionModule/EarlyTerminationProcess/CreateEarlyTerminationProcess/CreateEarlyTerminationProcessIndex"
     )
   )
 );
 
 const RepaymentList = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/Repayment/RepaymentList/RepaymentListIndex")
+    import("modules/collection/pages/CollectionModule/Repayment/RepaymentList/RepaymentListIndex")
   )
 );
 
 const RepaymentCreate = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/Repayment/RepaymentIndex/RepaymentIndex")
+    import("modules/collection/pages/CollectionModule/Repayment/RepaymentIndex/RepaymentIndex")
   )
 );
 
 const RepaymentIndex = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/Repayment/RepaymentIndex/RepaymentIndex")
+    import("modules/collection/pages/CollectionModule/Repayment/RepaymentIndex/RepaymentIndex")
   )
 );
 
 const AppliedSettlementDataIndex = Loadable(
   lazy(() =>
     import(
-      "pages/CollectionModule/Repayment/AppliedSettlementData/AppliedSettlementDataIndex"
+      "modules/collection/pages/CollectionModule/Repayment/AppliedSettlementData/AppliedSettlementDataIndex"
     )
   )
 );
 
 const ProvisionListIndex = Loadable(
   lazy(() =>
-    import("pages/Finance/ProvisionSetup/ProvisionList/ProvisionListIndex")
+    import("modules/finance/pages/Finance/ProvisionSetup/ProvisionList/ProvisionListIndex")
   )
 );
 
 const PriorityIndex = Loadable(
-  lazy(() => import("pages/Administration/PrioritySetup/index"))
+  lazy(() => import("modules/finance/setup/PrioritySetup/index"))
 );
 const JobQueueLogEntryListIndex = Loadable(
-  lazy(() => import("pages/Finance/EOM/EOMLogEntryList/EOMLogEntryListIndex"))
+  lazy(() => import("modules/finance/pages/Finance/EOM/EOMLogEntryList/EOMLogEntryListIndex"))
 );
 
 const JobQueueLogEntryIndex = Loadable(
-  lazy(() => import("pages/Finance/EOM/EOMLogEntry/EOMLogEntryIndex"))
+  lazy(() => import("modules/finance/pages/Finance/EOM/EOMLogEntry/EOMLogEntryIndex"))
 );
 
 const EomSyncIndex = Loadable(
-  lazy(() => import("pages/Finance/EOM/EOMSync/EOMSyncListIndex"))
+  lazy(() => import("modules/finance/pages/Finance/EOM/EOMSync/EOMSyncListIndex"))
 );
 
 const ReminderSetupListIndex = Loadable(
-  lazy(() => import("pages/Administration/ReminderSetup/ReminderSetupList"))
+  lazy(() => import("modules/collection/setup/ReminderSetup/ReminderSetupList"))
 );
 
 const SMSSetupListIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/SMSSetup/SMSSetupList/SMSSetupListIndex")
+    import("modules/collection/setup/SMSSetup/SMSSetupList/SMSSetupListIndex")
   )
 );
 const CreateEditSMSSetupIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/SMSSetup/CreateSMSSetup/CreateEditSMSSetupIndex")
+    import("modules/collection/setup/SMSSetup/CreateSMSSetup/CreateEditSMSSetupIndex")
   )
 );
 const GeneralLedgerEntrySetupListIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/GeneralLedgerEntrySetup/GeneralLedgerEntrySetupList/GeneralLedgerEntrySetupListIndex")
+    import("modules/finance/setup/GeneralLedgerEntrySetup/GeneralLedgerEntrySetupList/GeneralLedgerEntrySetupListIndex")
   )
 );
 const CreateEditGeneralLedgerEntrySetupIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/GeneralLedgerEntrySetup/CreateGeneralLedgerEntrySetup/CreateEditGeneralLedgerEntrySetupIndex")
+    import("modules/finance/setup/GeneralLedgerEntrySetup/CreateGeneralLedgerEntrySetup/CreateEditGeneralLedgerEntrySetupIndex")
   )
 );
 
 const PartnerApplicationList = Loadable(
-  lazy(() => import("pages/Administration/PartnerApplicationList/PartnerApplicationList"))
+  lazy(() => import("modules/administration/pages/Administration/PartnerApplicationList/PartnerApplicationList"))
 );
 
 const Reportist = Loadable(
-  lazy(() => import("pages/CreditManagement/Reports/ReportTable"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/Reports/ReportTable"))
 );
 
 const PenaltyLogList = Loadable(
-  lazy(() => import('pages/CollectionModule/PenaltyLog/PenaltyLogTableIndex'))
+  lazy(() => import('modules/collection/pages/CollectionModule/PenaltyLog/PenaltyLogTableIndex'))
 );
 
 const KPayRepaymentList = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/KPayRepayment/KPayRepaymentHistory/KPayRepaymentListIndex")
+    import("modules/collection/pages/CollectionModule/KPayRepayment/KPayRepaymentHistory/KPayRepaymentListIndex")
   )
 );
 
 const WriteOffPreparation = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/WriteOffPreparationList/WriteOffPreparationTableIndex")
+    import("modules/collection/pages/CollectionModule/WriteOffPreparationList/WriteOffPreparationTableIndex")
   )
 );
 
 const WriteOffList = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/WriteOffList/WriteOffListTableIndex")
+    import("modules/collection/pages/CollectionModule/WriteOffList/WriteOffListTableIndex")
   )
 );
 
 const WriteOffBatch = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/WriteOffBatchList/WriteOffBatchListIndex")
+    import("modules/collection/pages/CollectionModule/WriteOffBatchList/WriteOffBatchListIndex")
   )
 );
 
 const CreateWriteOffBatch = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/CreateWriteOffBatch/CreateWriteOffBatchIndex")
+    import("modules/collection/pages/CollectionModule/CreateWriteOffBatch/CreateWriteOffBatchIndex")
   )
 );
 
 const EmailSetupList = Loadable(
   lazy(() =>
-    import("pages/Administration/EmailSetup/EmailSetupList")
+    import("modules/administration/pages/Administration/EmailSetup/EmailSetupList")
   )
 );
 
 const FollowUpResultList = Loadable(
   lazy(() =>
-    import("pages/Administration/FollowUpResultSetup/FollowUpResultIndex")
+    import("modules/collection/setup/FollowUpResultSetup/FollowUpResultIndex")
   )
 );
 
 const AllocateActivitiesList = Loadable(
   lazy(() =>
-    import("pages/Administration/AllocateActivitiesSetup/AllocateActivitiesIndex")
+    import("modules/collection/setup/AllocateActivitiesSetup/AllocateActivitiesIndex")
   )
 );
 
 const ReminderAllocation = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/ReminderAllocation/ReminderAllocationTableIndex")
+    import("modules/collection/pages/CollectionModule/ReminderAllocation/ReminderAllocationTableIndex")
   )
 );
 
 const AllocatedReminder = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/AllocatedReminder/AllocatedReminderTableIndex")
+    import("modules/collection/pages/CollectionModule/AllocatedReminder/AllocatedReminderTableIndex")
   )
 );
 
 const SmsHistoryListIndex = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/SMSList/SMSListIndex")
+    import("modules/collection/pages/CollectionModule/SMSList/SMSListIndex")
   )
 );
 
 const ApplicationResponseSetupIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/ApplicationResponseSetup/ApplicationResponseList")
+    import("modules/credit-management/setup/ApplicationResponseSetup/ApplicationResponseList")
   )
 );
 
 const AssessmentResponseSetupIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/AssessmentResponseSetup/AssessmentResponseList")
+    import("modules/credit-management/setup/AssessmentResponseSetup/AssessmentResponseList")
   )
 );
 
 const CollectionReportListIndex = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/CollectionReport/CollectionReportTable")
+    import("modules/collection/pages/CollectionModule/CollectionReport/CollectionReportTable")
   )
 );
 
 const AllocatedReminderHistory = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/AllocatedReminderHistory/AllocatedReminderHistoryTableIndex")
+    import("modules/collection/pages/CollectionModule/AllocatedReminderHistory/AllocatedReminderHistoryTableIndex")
   )
 );
 
 const StatusCategoryListIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/StatusCategory/StatusCategoryList")
+    import("modules/administration/pages/Administration/StatusCategory/StatusCategoryList")
   )
 );
 
 const KPayRepaymentIndex = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/KPayRepayment/KPayRepayment/RepaymentIndex")
+    import("modules/collection/pages/CollectionModule/KPayRepayment/KPayRepayment/RepaymentIndex")
   )
 );
 
 const KPaySyncAccountsIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/KpaySyncAccounts/KpaySyncAccounts")
+    import("modules/loan-operation/pages/LoanOperationModule/KpaySyncAccounts/KpaySyncAccounts")
   )
 );
 
 const KPayNotificationIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/KpayNotification/KpayNotificationListIndex")
+    import("modules/administration/pages/Administration/KpayNotification/KpayNotificationListIndex")
   )
 );
 
 const CreditCriteriaListIndex = Loadable(
-  lazy(() => import("pages/CreditManagement/CreditCriteriaSetup/CreditCriteriaListIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/CreditCriteriaSetup/CreditCriteriaListIndex"))
 );
 
 const CreditCriteriaKeyIndex = Loadable(
-  lazy(() => import("pages/CreditManagement/CreditCriteriaKeySetup/CreditCriteriaKeyListIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/CreditCriteriaKeySetup/CreditCriteriaKeyListIndex"))
 );
 
 const CreditCriteriaHistoryIndex = Loadable(
-  lazy(() => import("pages/CreditManagement/AllCreditCriteria/CreditCriteriaListIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/AllCreditCriteria/CreditCriteriaListIndex"))
 );
 
 const DealerGroupIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/DealerGroupSetup/DealerGroupIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/DealerGroupSetup/DealerGroupIndex"))
 );
 
 const DealerPackageIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/DealerPackageSetup/DealerPackageIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/DealerPackageSetup/DealerPackageIndex"))
 );
 
 const DealerIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/DealerSetup/DealerIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/DealerSetup/DealerIndex"))
 );
 
 const VehicleIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/VehicleSetup/VehicleIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/VehicleSetup/VehicleIndex"))
 );
 
 const BrandIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/BrandSetup/BrandIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/BrandSetup/BrandIndex"))
 );
 
 const ModelIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/ModelSetup/ModelIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/ModelSetup/ModelIndex"))
 );
 
 const DealerContactPersonIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/DealerContactPersonSetup/DealerContactPersonIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/DealerContactPersonSetup/DealerContactPersonIndex"))
 );
 
 const DealerBankIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/DealerBankSetup/DealerBankIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/DealerBankSetup/DealerBankIndex"))
 );
 
 const CustomerInqueriesFormIndex = Loadable(
-  lazy(() => import("pages/CreditManagement/CustomerInquiriesForm/CustomerInquiriesIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/CustomerInquiriesForm/CustomerInquiriesIndex"))
 );
 
 const RefinanceCustomerIndex = Loadable(
-  lazy(() => import("pages/MOB/PDSD/RefinanceCustomerSetup/RefinanceCustomerIndex"))
+  lazy(() => import("modules/credit-management/setup/PDSD/RefinanceCustomerSetup/RefinanceCustomerIndex"))
 );
 
 const CreditSchemeIndex = Loadable(
-  lazy(() => import("pages/MOB/MOBSetup/CreditSchemeSetup/CreditSchemeIndex"))
+  lazy(() => import("modules/loan-operation/setup/MOBSetup/CreditSchemeSetup/CreditSchemeIndex"))
 )
 
 
 const SurveyInformationIndex = Loadable(
-  lazy(() => import("pages/CreditManagement/ApplicationInformation/SurveyInformationList/SurveyInformationTableIndex"))
+  lazy(() => import("modules/credit-management/pages/CreditManagement/ApplicationInformation/SurveyInformationList/SurveyInformationTableIndex"))
 )
 
 const InsuranceCompanySetup = Loadable(
   lazy(() =>
-    import("pages/Administration/InsuranceCompanySetup/InsuranceCompanyIndex")
+    import("modules/loan-operation/setup/InsuranceCompanySetup/InsuranceCompanyIndex")
   )
 );
 
 const InsurancePremiumFeeSetup = Loadable(
   lazy(() =>
-    import("pages/Administration/InsuranceFeesSetup/InsurancePremiumFeeIndex")
+    import("modules/loan-operation/setup/InsuranceFeesSetup/InsurancePremiumFeeIndex")
   )
 );
 
 const InsuranceInspectionIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/InsuranceInspection/InsuranceInspectionIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/InsuranceInspection/InsuranceInspectionIndex")
   )
 );
 
 const CORIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/CORCard/CORIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/CORCard/CORIndex")
   )
 );
 
 const CollateralSignatureIndex = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/CollateralSignature/CollateralSignatureIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/CollateralSignature/CollateralSignatureIndex")
   )
 );
 
 const WriteOffSignatureIndex = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/CreateWriteOffBatch/writeOffSignature/writeOffSignatureIndex")
+    import("modules/collection/pages/CollectionModule/CreateWriteOffBatch/writeOffSignature/writeOffSignatureIndex")
   )
 );
 
 const ApplicationDownPayment = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/ApplicationDownPayment/ApplicationDownPaymentList/ApplicationDownPaymentListIndex")
+    import("modules/loan-operation/pages/LoanOperationModule/ApplicationDownPayment/ApplicationDownPaymentList/ApplicationDownPaymentListIndex")
   )
 );
 
 const EditApplicationDownPayment = Loadable(
   lazy(() =>
-    import("pages/LoanOperationModule/ApplicationDownPayment/EditApplicationDownPayment/EditApplicationDownPayment")
+    import("modules/loan-operation/pages/LoanOperationModule/ApplicationDownPayment/EditApplicationDownPayment/EditApplicationDownPayment")
   )
 );
 
 const LastPaymentSetupList = Loadable(
   lazy(() =>
-    import("pages/Administration/LastPaymentSetup/LastPaymentSetupIndex")
+    import("modules/finance/setup/LastPaymentSetup/LastPaymentSetupIndex")
   )
 );
 
 const InsufficientPaymentList = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/InsufficientPayment/InsufficientPaymentList/InsufficientPaymentTableIndex")
+    import("modules/collection/pages/CollectionModule/InsufficientPayment/InsufficientPaymentList/InsufficientPaymentTableIndex")
   )
 );
 
 const CreateInsufficientPaymentBatch = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/InsufficientPayment/CreateInsufficientPaymentBatch/CreateInsufficientPaymentBatchIndex")
+    import("modules/collection/pages/CollectionModule/InsufficientPayment/CreateInsufficientPaymentBatch/CreateInsufficientPaymentBatchIndex")
   )
 );
 
 const InsufficientPaymentBatchList = Loadable(
   lazy(() =>
-    import("pages/CollectionModule/InsufficientPayment/InsufficientPaymentBatchList/InsufficientBatchListIndex")
+    import("modules/collection/pages/CollectionModule/InsufficientPayment/InsufficientPaymentBatchList/InsufficientBatchListIndex")
   )
 );
 
 const BlackListAreaIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/Address/BlackListArea/BlackListAreaIndex")
+    import("modules/administration/pages/Administration/Address/BlackListArea/BlackListAreaIndex")
   )
 );
 
 const ExcludeBlackListAreaIndex = Loadable(
   lazy(() =>
-    import("pages/Administration/Address/ExcludeBlackListArea/ExcludeBlackListAreaIndex")
+    import("modules/administration/pages/Administration/Address/ExcludeBlackListArea/ExcludeBlackListAreaIndex")
   )
 );
 
 const CalculatePenalties = Loadable(
   lazy(() =>
     import(
-      "pages/CollectionModule/CalculatePenalties/CalculatePenaltiesIndex"
+      "modules/collection/pages/CollectionModule/CalculatePenalties/CalculatePenaltiesIndex"
     )
   )
 );
 
 const CustomerWebApplicationTableIndex = Loadable(
   lazy(() =>
-    import("pages/MOB/CustomerWebApplication/ApplicationInformationList/ApplicationInformationListIndex")
+    import("modules/credit-management/pages/MOB-CustomerWebApplication/ApplicationInformationList/ApplicationInformationListIndex")
   )
 );
 
 const CustomerWebApplication = Loadable(
   lazy(() =>
-    import("pages/MOB/CustomerWebApplication/CreateApplicationInformation/CreateApplicationInformationIndex")
+    import("modules/credit-management/pages/MOB-CustomerWebApplication/CreateApplicationInformation/CreateApplicationInformationIndex")
   )
 );
 
 const NameOfBusinessIndex = Loadable(
-  lazy(() => import("pages/MOB/PDSD/NameOfBusinessSetup/NameOfBusinessIndex"))
+  lazy(() => import("modules/credit-management/setup/PDSD/NameOfBusinessSetup/NameOfBusinessIndex"))
 );
 
 const SignatureCorrectionIndex = Loadable(
-  lazy(() => import("pages/LoanOperationModule/SignatureCorrection/SignatureCorrectionIndex"))
+  lazy(() => import("modules/loan-operation/pages/LoanOperationModule/SignatureCorrection/SignatureCorrectionIndex"))
 );
 
 // ==============================|| MAIN ROUTING ||============================== //
