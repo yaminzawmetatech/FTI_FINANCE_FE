@@ -3,6 +3,21 @@ const configuredModules = process.env.REACT_APP_ENABLED_MODULES
   .map((moduleId) => moduleId.trim())
   .filter(Boolean);
 
+export const moduleSourceDependencies = {
+  administration: [
+    "credit-management",
+    "collection",
+    "finance",
+    "loan-operation",
+  ],
+  "credit-management": [
+    "administration",
+    "collection",
+    "finance",
+    "loan-operation",
+  ],
+};
+
 export const moduleDependencies = {
   administration: [],
   "credit-management": ["administration"],
@@ -19,7 +34,8 @@ export const moduleRegistry = {
   finance: "finance",
 };
 
-const enabled = new Set(configuredModules || Object.keys(moduleRegistry));
+const purchased = new Set(configuredModules || Object.keys(moduleRegistry));
+const enabled = new Set(purchased);
 
 const addDependencies = (moduleId) => {
   (moduleDependencies[moduleId] || []).forEach((dependencyId) => {
@@ -36,3 +52,15 @@ for (const moduleId of [...enabled]) {
 }
 
 export const getEnabledModuleIds = () => [...enabled];
+
+export const getPurchasedModuleIds = () => [...purchased];
+
+export const getSourceModuleIds = () => {
+  const sourceModules = new Set(enabled);
+  for (const moduleId of enabled) {
+    for (const dependencyId of moduleSourceDependencies[moduleId] || []) {
+      sourceModules.add(dependencyId);
+    }
+  }
+  return [...sourceModules];
+};

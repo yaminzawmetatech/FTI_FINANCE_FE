@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { showErrorToast, showSuccessToast } from "common/ToastMessage";
 import CommonMessage from "common/CommonMessage";
-import { createCollateralType, updateCollateralType, getAllCollateralTypes } from "modules/loan-operation/slices/collateralTypesSetupSlice";
+import { createCollateralType, updateCollateralType, getAllCollateralTypes } from "modules/administration/slices/collateralTypesSetupSlice";
 
 const useCollateralTypeForm = () => {
   const dispatch = useDispatch();

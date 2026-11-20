@@ -1,5 +1,6 @@
 import dashboard from "./dashboard";
-import { getEnabledModuleIds } from "../app/config/moduleRegistry";
+import filterNavigationForModules from "./filterNavigationForModules";
+import { getPurchasedModuleIds } from "../app/config/moduleRegistry";
 
 const moduleNavigation = {
   administration: () => require("modules/administration/navigation").default,
@@ -9,7 +10,8 @@ const moduleNavigation = {
   finance: () => require("modules/finance/navigation").default,
 };
 
-const children = getEnabledModuleIds().reduce((items, moduleId) => {
+const purchasedModules = getPurchasedModuleIds();
+const children = purchasedModules.reduce((items, moduleId) => {
   const groups = moduleNavigation[moduleId]();
   return items.concat(groups || []);
 }, []);
@@ -18,7 +20,7 @@ const menuItems = {
   items: [
     {
       ...dashboard,
-      children,
+      children: filterNavigationForModules(children, purchasedModules),
     },
   ],
 };

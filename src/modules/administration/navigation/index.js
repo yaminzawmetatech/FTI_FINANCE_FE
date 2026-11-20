@@ -334,6 +334,7 @@ const navigation = [
             },
             {
               id: "Administration-down-payment-scheme-setup-down-payment-scheme-setup",
+              moduleId: "loan-operation",
               title: "Loan Calculation Setup",
               permission: "DownPaymentSchemeListing",
               icon: icons.PaidIcon,
@@ -341,6 +342,7 @@ const navigation = [
             },
             {
               id: "Administration-application-information-set-up",
+              moduleId: "credit-management",
               title: "Application Form Configuration",
               permission: "ApplicationInformationSetupListing",
               url: "/Administration/ApplicationInformationSetup",
@@ -348,6 +350,7 @@ const navigation = [
             },
             {
               id: "Administration-application-information-set-up-list",
+              moduleId: "credit-management",
               title: "Application Form List",
               permission: "ApplicationInformationSetupListing",
               url: "/Administration/ApplicationInfrmationSetupList",
@@ -443,6 +446,7 @@ const navigation = [
               children: [
                 {
                   id: "Administration-survey-information-setup-name",
+                  moduleId: "credit-management",
                   title: "Survey Types",
                   permission: "SurveyNameSetupListing",
                   icon: PollIcon,
@@ -450,6 +454,7 @@ const navigation = [
                 },
                 {
                   id: "Administration-first-due-date-setup",
+                  moduleId: "loan-operation",
                   title: "First Payment Date Rules",
                   permission: "FirstDueDateSetupListing",
                   icon: icons.DashboardOutlined,
@@ -457,6 +462,7 @@ const navigation = [
                 },
                 {
                   id: "Administration-application-assessment-response",
+                  moduleId: "credit-management",
                   title: "Assessment Criteria",
                   permission: "ApplicationAssessmentResponseListing",
                   url: "/administration/application-assessment-response",
@@ -464,6 +470,7 @@ const navigation = [
                 },
                 {
                   id: "Administration-assessment-response",
+                  moduleId: "credit-management",
                   title: "Customer Assessment",
                   permission: "ApplicationReasonListing",
                   url: "/administration/application-reason",
@@ -481,6 +488,7 @@ const navigation = [
           children: [
             {
               id: "Administration-billing-date-registration",
+              moduleId: "loan-operation",
               title: "Billing Schedule",
               permission: "Administration-BillingDateRegistrationListing", // change name
               url: "/administration/billing-date-registration",
@@ -488,6 +496,7 @@ const navigation = [
             },
             {
               id: "Administration-down-payment-scheme-setup-Insurance",
+              moduleId: "loan-operation",
               title: "Insurance Management",
               permission: "InsuranceSetup",
               icon: icons.DashboardOutlined,
@@ -510,6 +519,7 @@ const navigation = [
             },
             {
               id: "Administration-Contract",
+              moduleId: "loan-operation",
               title: "Contract Templates",
               permission: "Contract Template Setup",
               icon: DisplaySettingsIcon,
@@ -532,6 +542,7 @@ const navigation = [
             },
             {
               id: "Administration-Contract",
+              moduleId: "collection",
               title: "Collection Letters",
               permission: "ContractSetup",
               icon: DisplaySettingsIcon,
@@ -556,6 +567,7 @@ const navigation = [
         },
         {
           id: "Administration-Collection",
+          moduleId: "collection",
           title: "Collections & Recovery",
           permission: "Administration-CollectionModuleSetup",
           icon: CollectionsBookmarkIcon,
@@ -606,6 +618,7 @@ const navigation = [
         },
         {
           id: "Administration-Accounting",
+          moduleId: "finance",
           title: "Financial Accounting",
           permission: "Administration-AccountingModuleSetup",
           icon: CreditScoreIcon,

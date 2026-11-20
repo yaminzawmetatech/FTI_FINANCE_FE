@@ -30,7 +30,8 @@ for (const entry of copyRootEntries) {
 
 fs.cpSync("src", path.join(output, "src"), { recursive: true });
 
-const selected = new Set(config.modules || []);
+const purchased = new Set(config.modules || []);
+const selected = new Set(purchased);
 const dependencies = {
   administration: [],
   "credit-management": [],
@@ -38,8 +39,25 @@ const dependencies = {
   collection: ["administration", "credit-management", "loan-operation"],
   finance: ["administration", "loan-operation"],
 };
+const sourceDependencies = {
+  administration: [
+    "credit-management",
+    "collection",
+    "finance",
+    "loan-operation",
+  ],
+  "credit-management": [
+    "administration",
+    "collection",
+    "finance",
+    "loan-operation",
+  ],
+};
 
 const addDependencies = (moduleId) => {
+  if (!dependencies[moduleId]) {
+    throw new Error(`Unknown module "${moduleId}" in customer configuration.`);
+  }
   for (const dependency of dependencies[moduleId] || []) {
     selected.add(dependency);
     addDependencies(dependency);
@@ -48,8 +66,15 @@ const addDependencies = (moduleId) => {
 
 for (const moduleId of [...selected]) addDependencies(moduleId);
 
+const sourceModules = new Set(selected);
+for (const moduleId of selected) {
+  for (const dependency of sourceDependencies[moduleId] || []) {
+    sourceModules.add(dependency);
+  }
+}
+
 for (const moduleId of Object.keys(dependencies)) {
-  if (!selected.has(moduleId)) {
+  if (!sourceModules.has(moduleId)) {
     fs.rmSync(path.join(output, "src", "modules", moduleId), {
       recursive: true,
       force: true,
@@ -88,49 +113,92 @@ const pruneGeneratedRouteFile = (routeFile, selectedModules) => {
   traverse(ast, {
     VariableDeclarator(declarationPath) {
       const declarationText = generate(declarationPath.node).code;
-      const importsRemovedModule = /^import/.test(declarationText)
-        ? false
-        : [...selectedModules].every(
-            (selectedModule) =>
-              !declarationText.includes(`modules/${selectedModule}/`)
-          );
+      const ownerMatches = [...declarationText.matchAll(/modules\/([^/"']+)/g)];
+      const importsRemovedModule = ownerMatches.some(
+        ([, owner]) => !selectedModules.has(owner)
+      );
       if (
-        declarationText.match(/modules\/([^/"']+)/) &&
-        !importsRemovedModule &&
-        !declarationText.includes(`modules/`)
+        importsRemovedModule &&
+        declarationPath.node.id.type === "Identifier"
       ) {
+        absentNames.add(declarationPath.node.id.name);
         declarationPath.remove();
-        return;
-      }
-
-      if (declarationText.includes("modules/")) {
-        const ownerMatches = [...declarationText.matchAll(/modules\/([^/"']+)/g)];
-        const removed = ownerMatches.some(
-          ([, owner]) => !selectedModules.has(owner)
-        );
-        if (removed && declarationPath.node.id.type === "Identifier") {
-          absentNames.add(declarationPath.node.id.name);
-          declarationPath.remove();
-        }
       }
     },
   });
 
-  const removeUnavailableRouteObjects = (elements) =>
-    elements.filter((element) => {
-      if (!element) return false;
-      const text = generate(element).code;
-      for (const absentName of absentNames) {
-        if (
-          text.includes(`<${absentName}`) ||
-          text.includes(`<${absentName}>`) ||
-          text.includes(`${absentName} }`)
-        ) {
-          return false;
+  const containsUnavailableComponent = (node) => {
+    if (!node || typeof node !== "object") return false;
+    if (Array.isArray(node)) {
+      return node.some(containsUnavailableComponent);
+    }
+
+    if (node.type === "JSXOpeningElement") {
+      const name = node.name;
+      const componentName =
+        name.type === "JSXIdentifier"
+          ? name.name
+          : name.type === "JSXMemberExpression" &&
+              name.object.type === "JSXIdentifier"
+            ? name.object.name
+            : null;
+      if (componentName && absentNames.has(componentName)) return true;
+    }
+
+    return Object.keys(node)
+      .filter(
+        (key) =>
+          key !== "loc" &&
+          key !== "start" &&
+          key !== "end" &&
+          key !== "extra" &&
+          key !== "comments" &&
+          key !== "leadingComments" &&
+          key !== "innerComments" &&
+          key !== "trailingComments"
+      )
+      .some((key) => containsUnavailableComponent(node[key]));
+  };
+
+  const getObjectProperty = (node, name) =>
+    node.properties.find(
+      (property) =>
+        property.type === "ObjectProperty" &&
+        ((property.key.type === "Identifier" && property.key.name === name) ||
+          property.key.value === name)
+    );
+
+  const removeUnavailableRouteObjects = (elements) => {
+    const availableElements = [];
+    for (const element of elements) {
+      if (!element) continue;
+      if (element.type !== "ObjectExpression") {
+        if (!containsUnavailableComponent(element)) {
+          availableElements.push(element);
+        }
+        continue;
+      }
+
+      const childrenProperty = getObjectProperty(element, "children");
+      if (childrenProperty?.value.type === "ArrayExpression") {
+        const children = childrenProperty.value.elements;
+        const originalLength = children.length;
+        childrenProperty.value.elements =
+          removeUnavailableRouteObjects(children);
+        if (originalLength > 0 && childrenProperty.value.elements.length === 0) {
+          continue;
         }
       }
-      return true;
-    });
+
+      const routeElement = getObjectProperty(element, "element");
+      if (routeElement && containsUnavailableComponent(routeElement.value)) {
+        continue;
+      }
+
+      availableElements.push(element);
+    }
+    return availableElements;
+  };
 
   traverse(ast, {
     VariableDeclarator(declarationPath) {
@@ -152,14 +220,14 @@ const pruneGeneratedRouteFile = (routeFile, selectedModules) => {
   fs.writeFileSync(routeFile, generate(ast).code);
 };
 
-for (const moduleId of [...selected]) {
+for (const moduleId of [...purchased]) {
   pruneGeneratedRouteFile(
     path.join(output, "src", "modules", moduleId, "routes", "index.js"),
-    selected
+    purchased
   );
 }
 
-const moduleEnv = [...selected].join(",");
+const moduleEnv = [...purchased].join(",");
 const envPath = path.join(output, ".env");
 const existingEnv = fs.existsSync(envPath)
   ? fs.readFileSync(envPath, "utf8")
@@ -172,7 +240,8 @@ fs.writeFileSync(
 const manifest = {
   id: config.id,
   name: config.name,
-  modules: [...selected],
+  modules: [...purchased],
+  dependencies: [...selected].filter((moduleId) => !purchased.has(moduleId)),
 };
 fs.writeFileSync(
   path.join(output, "customer-package.json"),
@@ -184,71 +253,130 @@ if (fs.existsSync(registryPath)) {
   fs.writeFileSync(
     registryPath,
     `export const moduleDependencies = ${JSON.stringify(dependencies, null, 2)};\n\n` +
+      `export const moduleSourceDependencies = ${JSON.stringify(sourceDependencies, null, 2)};\n\n` +
       `export const moduleRegistry = ${JSON.stringify(
         Object.fromEntries([...selected].map((moduleId) => [moduleId, moduleId])),
         null,
         2
       )};\n\n` +
-      `export const getEnabledModuleIds = () => ${JSON.stringify([...selected])};\n`
+      `export const getEnabledModuleIds = () => ${JSON.stringify([...selected])};\n\n` +
+      `export const getPurchasedModuleIds = () => ${JSON.stringify([...purchased])};\n\n` +
+      `export const getSourceModuleIds = () => ${JSON.stringify([...sourceModules])};\n`
   );
 }
 
 const routeComposerPath = path.join(output, "src", "app", "router", "index.js");
 if (fs.existsSync(routeComposerPath)) {
-  const imports = [...selected]
+  const imports = [...purchased]
     .map(
       (moduleId) =>
         `import { MainLayoutRoutes as ${moduleId.replace(/-/g, "_")}MainLayoutRoutes, StandaloneRoutes as ${moduleId.replace(/-/g, "_")}StandaloneRoutes } from "modules/${moduleId}/routes";`
     )
     .join("\n");
-  const expressions = [...selected]
+  const mainLayoutRoutes = [...purchased]
     .map(
       (moduleId) =>
-        `  ...${moduleId.replace(/-/g, "_")}MainLayoutRoutes,\n  ...${moduleId.replace(/-/g, "_")}StandaloneRoutes`
+        `      ...${moduleId.replace(/-/g, "_")}MainLayoutRoutes`
+    )
+    .join(",\n");
+  const standaloneRoutes = [...purchased]
+    .map(
+      (moduleId) =>
+        `  ...${moduleId.replace(/-/g, "_")}StandaloneRoutes`
     )
     .join(",\n");
   fs.writeFileSync(
     routeComposerPath,
     `import React from "react";\nimport MainLayout from "layout/MainLayout";\n${imports}\n\n` +
-      `export const buildApplicationRoutes = (loginRoutes) => [\n` +
-      `  {\n    path: "/",\n    element: <MainLayout />,\n    children: [\n${expressions}\n    ],\n  },\n` +
+      `export const buildApplicationRoutes = async (loginRoutes) => [\n` +
+      `  {\n    path: "/",\n    element: <MainLayout />,\n    children: [\n${mainLayoutRoutes}\n    ],\n  },\n` +
+      `${standaloneRoutes ? `${standaloneRoutes},\n` : ""}` +
       `  ...loginRoutes,\n];\n`
   );
 }
 
 const menuIndexPath = path.join(output, "src", "menu-items", "index.js");
 if (fs.existsSync(menuIndexPath)) {
-  const navigationImports = [...selected]
+  const navigationImports = [...purchased]
     .map(
       (moduleId) =>
         `import ${moduleId.replace(/-/g, "_")}Navigation from "modules/${moduleId}/navigation";`
     )
     .join("\n");
-  const children = [...selected]
+  const children = [...purchased]
     .map((moduleId) => `  ...${moduleId.replace(/-/g, "_")}Navigation`)
     .join(",\n");
   fs.writeFileSync(
     menuIndexPath,
-    `import dashboard from "./dashboard";\n${navigationImports}\n\n` +
-      `const menuItems = {\n  items: [{\n    ...dashboard,\n    children: [\n${children}\n    ],\n  }],\n};\n\nexport default menuItems;\n`
+    `import dashboard from "./dashboard";\n` +
+      `import filterNavigationForModules from "./filterNavigationForModules";\n` +
+      `import { getPurchasedModuleIds } from "../app/config/moduleRegistry";\n` +
+      `${navigationImports}\n\n` +
+      `const purchasedModules = getPurchasedModuleIds();\n` +
+      `const children = filterNavigationForModules([\n${children}\n], purchasedModules);\n\n` +
+      `const menuItems = {\n  items: [{\n    ...dashboard,\n    children,\n  }],\n};\n\nexport default menuItems;\n`
   );
 }
 
 const reducerRegistryPath = path.join(output, "src", "store", "reducers", "reducerRegistry.js");
 if (fs.existsSync(reducerRegistryPath)) {
-  const imports = [...selected]
+  const imports = [...sourceModules]
     .map(
       (moduleId) =>
         `import ${moduleId.replace(/-/g, "_")}Reducers from "modules/${moduleId}/reducerMap";`
     )
     .join("\n");
-  const assignments = [...selected]
+  const assignments = [...sourceModules]
     .map((moduleId) => `  Object.assign(reducerMap, ${moduleId.replace(/-/g, "_")}Reducers);`)
     .join("\n");
   fs.writeFileSync(
     reducerRegistryPath,
-    `import { combineReducers } from "redux";\n${imports}\n\nexport const getEnabledReducerMap = () => {\n  const reducerMap = {};\n${assignments}\n  return combineReducers(reducerMap);\n};\n`
+    `${imports}\n\nexport const getEnabledReducerMap = () => {\n  const reducerMap = {};\n${assignments}\n  return reducerMap;\n};\n`
   );
 }
+
+const searchProviderDirectory = path.join(
+  output,
+  "src",
+  "components",
+  "form",
+  "searchProviders"
+);
+const searchProviderFiles = {
+  administration: "administration",
+  "credit-management": "creditManagement",
+  "loan-operation": "loanOperation",
+  collection: "collection",
+  finance: "finance",
+};
+
+for (const [moduleId, providerFile] of Object.entries(searchProviderFiles)) {
+  if (!purchased.has(moduleId)) {
+    fs.rmSync(path.join(searchProviderDirectory, `${providerFile}.js`), {
+      force: true,
+    });
+  }
+}
+
+const searchProviderImports = [...purchased]
+  .map(
+    (moduleId) =>
+      `import ${moduleId.replace(/-/g, "_")}SearchProvider from "./${searchProviderFiles[moduleId]}";`
+  )
+  .join("\n");
+const searchProviderEntries = [...purchased]
+  .map(
+    (moduleId) =>
+      `  "${moduleId}": ${moduleId.replace(/-/g, "_")}SearchProvider`
+  )
+  .join(",\n");
+fs.writeFileSync(
+  path.join(searchProviderDirectory, "index.js"),
+  `import { buildAdvancedSearchProviderRegistry } from "./createRegistry";\n` +
+    `${searchProviderImports}\n\n` +
+    `const searchProviders = {\n${searchProviderEntries}\n};\n\n` +
+    `export const createAdvancedSearchProviderRegistry = () =>\n` +
+    `  buildAdvancedSearchProviderRegistry(searchProviders);\n`
+);
 
 console.log(`Created customer source package at ${output}`);

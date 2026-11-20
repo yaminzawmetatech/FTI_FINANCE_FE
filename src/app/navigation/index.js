@@ -1,4 +1,5 @@
-import { getEnabledModuleIds } from "../config/moduleRegistry";
+import { getPurchasedModuleIds } from "../config/moduleRegistry";
+import filterNavigationForModules from "menu-items/filterNavigationForModules";
 
 const moduleNavigationLoaders = {
   administration: () => import("modules/administration/navigation"),
@@ -10,9 +11,10 @@ const moduleNavigationLoaders = {
 
 export const getModuleNavigation = async () => {
   const groups = [];
-  for (const moduleId of getEnabledModuleIds()) {
+  const purchasedModules = getPurchasedModuleIds();
+  for (const moduleId of purchasedModules) {
     const loaded = await moduleNavigationLoaders[moduleId]();
     groups.push(...(loaded.default || []));
   }
-  return groups;
+  return filterNavigationForModules(groups, purchasedModules);
 };

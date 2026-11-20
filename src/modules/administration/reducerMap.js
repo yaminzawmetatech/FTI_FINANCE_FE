@@ -43,6 +43,7 @@ import addressWardData from "./slices/addressWardSlice";
 import blackListArea from "./slices/blackListAreaSlice";
 import excludeBlackListArea from "./slices/excludeBlackListAreaSlice";
 import emailSetups from "./slices/emailSetupSlice";
+import collateralTypes from "./slices/collateralTypesSetupSlice";
 
 const reducerMap = {
   menu,
@@ -90,6 +91,7 @@ const reducerMap = {
   blackListArea,
   excludeBlackListArea,
   emailSetups,
+  collateralTypes,
 };
 
 export default reducerMap;

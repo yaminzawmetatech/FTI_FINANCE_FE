@@ -1,5 +1,5 @@
 import MainLayout from "layout/MainLayout";
-import { getEnabledModuleIds } from "../config/moduleRegistry";
+import { getPurchasedModuleIds } from "../config/moduleRegistry";
 
 const moduleRouteLoaders = {
   administration: () => import("modules/administration/routes"),
@@ -13,7 +13,7 @@ export const buildApplicationRoutes = async (loginRoutes) => {
   const mainChildren = [];
   const standaloneRoutes = [];
 
-  for (const moduleId of getEnabledModuleIds()) {
+  for (const moduleId of getPurchasedModuleIds()) {
     const loaded = await moduleRouteLoaders[moduleId]();
     mainChildren.push(...(loaded.MainLayoutRoutes || []));
     standaloneRoutes.push(...(loaded.StandaloneRoutes || []));

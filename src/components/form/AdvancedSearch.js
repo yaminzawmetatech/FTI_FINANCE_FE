@@ -7,27 +7,24 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useForm } from "react-hook-form";
 import { Grid, Button } from "@mui/material";
 import dayjs from "dayjs";
-import { getMobCategory, getProjectCategory } from "modules/administration/slices/projectcategorySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getAddressTownships } from "modules/administration/slices/addressTownshipSlice";
-import { getAddressWards } from "modules/administration/slices/addressWardSlice";
-import { getUsers } from "modules/administration/slices/usersSlice";
 import { AppBar, Toolbar } from "@mui/material";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import Checkbox from "@mui/material/Checkbox";
-import { getSubCategory } from "modules/administration/slices/subcategorySlice";
-import { getAddressStates } from "modules/administration/slices/addressStateSlice";
-import { getAllocateActivities } from "modules/collection/slices/allocateActivitiesSlice";
-import { getFollowUpResults } from "modules/collection/slices/followUpResultSlice";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import { getBankAccountCodes } from "modules/finance/slices/accountCodeSlice";
-import { getDealerByDealerType } from "modules/loan-operation/slices/dealerSlice";
-import { getAllCollateralTypes } from "modules/loan-operation/slices/collateralTypesSetupSlice";
 import { CONTRACT_STATUS } from "constants/contractStatus";
+import { createAdvancedSearchProviderRegistry } from "./searchProviders";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
+const getRequiredSearchData = (searchState, key) => {
+  if (!Object.prototype.hasOwnProperty.call(searchState, key)) {
+    throw new Error(`AdvancedSearch data "${key}" has no registered provider.`);
+  }
+  return searchState[key];
+};
 
 const AdvancedSearch = ({
   options,
@@ -41,6 +38,15 @@ const AdvancedSearch = ({
   searchSingleField
 }) => {
   const dispatch = useDispatch();
+  const providerRegistry = useMemo(
+    () => createAdvancedSearchProviderRegistry(),
+    []
+  );
+  const searchState = useSelector(providerRegistry.selectState);
+  const availableOptions = useMemo(
+    () => options.filter((option) => providerRegistry.isOptionAvailable(option.type)),
+    [options, providerRegistry]
+  );
 
   const IS_TRUE_FALSE = [
     { id: "1", name: "Yes" },
@@ -88,7 +94,7 @@ const AdvancedSearch = ({
   //   { id: 3, name: "Field Survey" },
   // ]
 
-  const [filteredOptions, setFilteredOptions] = useState(options); // filteredOptions state
+  const [filteredOptions, setFilteredOptions] = useState(availableOptions);
   const [selectedCategory, setSelectedCategory] = useState();
 
   const { handleSubmit, watch, setValue } = useForm({
@@ -97,43 +103,19 @@ const AdvancedSearch = ({
     },
   });
 
-  const { users } = useSelector((state) => state.user);
-
-  const { projectCategories } = useSelector((state) => state.projectCategories);
-
-  const { subCategories } = useSelector((state) => state.subCategories);
-
-  const { addressTownships } = useSelector((state) => state.addressTownships);
-
-  const { addressStates } = useSelector((state) => state.addressStates);
-
-  const { addressWards } = useSelector((state) => state.addressWards);
-
-  const { dealerGroups } = useSelector((state) => state.dealerGroups);
-
-  const { dealers } = useSelector((state) => state.dealers);
-
-  const { dealersByType } = useSelector((state) => state.dealers);
-
-  const { dealerContactPeople } = useSelector((state) => state.dealerContactPeople);
-
-  const { bankAccountCodes } = useSelector((state) => state.accountCodes);
-
-  const { creditCriteriaTypes } = useSelector(
-    (state) => state.creditCriteriaTypes
+  const users = getRequiredSearchData(searchState, "users");
+  const projectCategories = getRequiredSearchData(
+    searchState,
+    "projectCategories"
   );
-
-  const { allocateActivities } = useSelector(
-    (state) => state.allocateActivities
+  const subCategories = getRequiredSearchData(searchState, "subCategories");
+  const addressTownships = getRequiredSearchData(
+    searchState,
+    "addressTownships"
   );
-
-  const { collateralTypes } = useSelector(
-    (state) => state.collateralTypes
-  );
-
-
-
-  const { followUpResults } = useSelector((state) => state.followUpResults);
+  const addressStates = getRequiredSearchData(searchState, "addressStates");
+  const addressWards = getRequiredSearchData(searchState, "addressWards");
+  const collateralTypes = getRequiredSearchData(searchState, "collateralTypes");
   let subCategoriesArr = [];
   const todayDate = dayjs(Date.now());
 
@@ -149,6 +131,10 @@ const AdvancedSearch = ({
   const filters = watch("filters");
 
   let dateValue = autoSearchByClick === "total_allocated" ? dayjs() : null;
+
+  useEffect(() => {
+    setFilteredOptions(availableOptions);
+  }, [availableOptions]);
 
   useEffect(() => {
     const searchValueArr = [];
@@ -262,7 +248,7 @@ const AdvancedSearch = ({
     );
 
     const remainingFilters = filters.filter((_, i) => i !== index);
-    const tempFilteredOptions = options.filter((opt) =>
+    const tempFilteredOptions = availableOptions.filter((opt) =>
       remainingFilters.every((item) => item.filtered_by !== opt.id)
     );
     setFilteredOptions(tempFilteredOptions); // re_add removed option in filtered aray
@@ -270,45 +256,15 @@ const AdvancedSearch = ({
 
   //filter by
   const handleFilteredChange = (index, selectedValue) => {
-    const option = options.find((option) => option.id === selectedValue);
+    const option = availableOptions.find((option) => option.id === selectedValue);
     const updatedFilters = [...filters];
     updatedFilters[index].filtered_by = option?.id || "";
     updatedFilters[index].type = option?.type || "";
     setValue("filters", updatedFilters);
 
-    // for autocomplete
-    if (option?.type === "autocomplete_category") {
-      dispatch(getProjectCategory());
-    } else if (option?.type === "autocomplete_mob_category") {
-      dispatch(getMobCategory());
-    }
-    else if (option?.type === "autocomplete_sub_category") {
-      dispatch(getSubCategory());
-    } else if (option?.type === "autocomplete_state") {
-      dispatch(getAddressStates());
-    } else if (option?.type === "autocomplete_township") {
-      dispatch(getAddressTownships());
-    } else if (option?.type === "autocomplete_ward") {
-      dispatch(getAddressWards());
-    } else if (option?.type === "autocomplete_user") {
-      dispatch(getUsers());
-    } else if (option?.type === "autocomplete_ihco") {
-      dispatch(getUsers("IHCO"));
-    } else if (option?.type === "autocomplete_activity") {
-      dispatch(getAllocateActivities());
-    } else if (option?.type === "autocomplete_follow_up_result") {
-      dispatch(getFollowUpResults());
-    } else if (option?.type === "autocomplete_bank_account_code") {
-      dispatch(getBankAccountCodes());
-    } else if (option?.type === "autocomplete_dealers_by_type") {
-      dispatch(getDealerByDealerType(["School", "Travel"]));
-    } else if (option?.type === "autocomplete_collateral_type") {
-      dispatch(getAllCollateralTypes({ params: {} }));
-    } else if (option?.type === "autocomplete_cmco") {
-      dispatch(getUsers("CMCO"));
-    }
+    if (option) providerRegistry.loadOption(dispatch, option.type);
     // remove selected option in filtered aray
-    const tempFilteredOptions = options.filter((opt) =>
+    const tempFilteredOptions = availableOptions.filter((opt) =>
       updatedFilters.every((item) => item.filtered_by !== opt.id)
     );
 
@@ -419,7 +375,7 @@ const AdvancedSearch = ({
                 options={filteredOptions}
                 getOptionLabel={(option) => option.name || ""}
                 value={
-                  options.find((option) => option.id === filter.filtered_by) ||
+                  availableOptions.find((option) => option.id === filter.filtered_by) ||
                   null
                 }
                 onChange={(e, newValue) =>
@@ -699,10 +655,16 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={creditCriteriaTypes}
+                  options={getRequiredSearchData(
+                    searchState,
+                    "creditCriteriaTypes"
+                  )}
                   getOptionLabel={(option) => option.value || ""}
                   value={
-                    creditCriteriaTypes.find(
+                    getRequiredSearchData(
+                      searchState,
+                      "creditCriteriaTypes"
+                    ).find(
                       (item) => item.value === filter.value1
                     ) || null
                   }
@@ -840,10 +802,16 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={allocateActivities}
+                  options={getRequiredSearchData(
+                    searchState,
+                    "allocateActivities"
+                  )}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    allocateActivities.find(
+                    getRequiredSearchData(
+                      searchState,
+                      "allocateActivities"
+                    ).find(
                       (item) => item.id === filter.value1
                     ) || null
                   }
@@ -871,10 +839,12 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={followUpResults}
+                  options={getRequiredSearchData(searchState, "followUpResults")}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    followUpResults.find((item) => item.id === filter.value1) ||
+                    getRequiredSearchData(searchState, "followUpResults").find(
+                      (item) => item.id === filter.value1
+                    ) ||
                     null
                   }
                   onChange={(e, newValue) =>
@@ -901,10 +871,12 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={bankAccountCodes}
+                  options={getRequiredSearchData(searchState, "bankAccountCodes")}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    bankAccountCodes?.find((item) => item.id === filter.value1) ||
+                    getRequiredSearchData(searchState, "bankAccountCodes").find(
+                      (item) => item.id === filter.value1
+                    ) ||
                     null
                   }
                   onChange={(e, newValue) =>
@@ -979,10 +951,12 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={dealersByType}
+                  options={getRequiredSearchData(searchState, "dealersByType")}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    dealersByType.find((item) => item.id === filter.value1) ||
+                    getRequiredSearchData(searchState, "dealersByType").find(
+                      (item) => item.id === filter.value1
+                    ) ||
                     null
                   }
                   onChange={(e, newValue) =>
@@ -1005,10 +979,12 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={dealerGroups ?? []}
+                  options={getRequiredSearchData(searchState, "dealerGroups")}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    dealerGroups?.find((item) => item.id === filter.value1) ||
+                    getRequiredSearchData(searchState, "dealerGroups").find(
+                      (item) => item.id === filter.value1
+                    ) ||
                     null
                   }
                   onChange={(e, newValue) =>
@@ -1057,10 +1033,12 @@ const AdvancedSearch = ({
                 lg={mode === "divide_mode" ? 3 : 2}
               >
                 <Autocomplete
-                  options={dealers ?? []}
+                  options={getRequiredSearchData(searchState, "dealers")}
                   getOptionLabel={(option) => option.name || ""}
                   value={
-                    dealers.find((item) => item.id === filter.value1) ||
+                    getRequiredSearchData(searchState, "dealers").find(
+                      (item) => item.id === filter.value1
+                    ) ||
                     null
                   }
                   onChange={(e, newValue) =>

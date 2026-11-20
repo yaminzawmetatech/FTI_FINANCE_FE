@@ -8,7 +8,7 @@ import { showErrorToast, showSuccessToast } from "common/ToastMessage";
 import CommonMessage from "common/CommonMessage";
 import { checkExistingGuarantor } from "modules/credit-management/slices/guarantorCheckNrcSlice";
 import { getCollateralByUuid, updateCollateral } from "modules/loan-operation/slices/collateralSlice";
-import { getAllCollateralTypes } from "modules/loan-operation/slices/collateralTypesSetupSlice";
+import { getAllCollateralTypes } from "modules/administration/slices/collateralTypesSetupSlice";
 import { getCMCO } from "modules/administration/slices/usersSlice";
 
 

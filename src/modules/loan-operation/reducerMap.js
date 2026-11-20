@@ -31,7 +31,6 @@ import insurancePremiumFees from "./slices/insurancePremiumFeeSlice";
 import initialPaymentCalculations from "./slices/initialPaymentCalSlice";
 import insuranceInspections from "./slices/insuranceInspectionSlice";
 import firstDueDateSetups from "./slices/firstDueDateSetupSlice";
-import collateralTypes from "./slices/collateralTypesSetupSlice";
 import collaterals from "./slices/collateralSlice";
 import collateralSignature from "./slices/collateralSignatureSlice";
 import contractGeneralLedgers from "./slices/contractGLSlice";
@@ -47,6 +46,7 @@ export default {
   contracts,
   generateLedgers,
   contractDetail,
+  actualPaymentLinesByContractId: contractDetail,
   contractAgreementSetup,
   stampDutyPayments,
   disbursementPayments,
@@ -73,7 +73,6 @@ export default {
   initialPaymentCalculations,
   insuranceInspections,
   firstDueDateSetups,
-  collateralTypes,
   collaterals,
   collateralSignature,
   contractGeneralLedgers,

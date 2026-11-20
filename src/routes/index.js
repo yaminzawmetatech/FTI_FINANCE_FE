@@ -7,12 +7,27 @@ import { useEffect, useState } from "react";
 
 // ==============================|| ROUTING RENDER ||============================== //
 
+let applicationRoutesPromise;
+
+const getApplicationRoutes = () => {
+  if (!applicationRoutesPromise) {
+    applicationRoutesPromise = buildApplicationRoutes([LoginRoutes]).catch(
+      (error) => {
+        applicationRoutesPromise = null;
+        throw error;
+      }
+    );
+  }
+
+  return applicationRoutesPromise;
+};
+
 export default function ThemeRoutes() {
   const [routes, setRoutes] = useState(null);
 
   useEffect(() => {
     let active = true;
-    buildApplicationRoutes([LoginRoutes]).then((configuredRoutes) => {
+    getApplicationRoutes().then((configuredRoutes) => {
       if (active) setRoutes(configuredRoutes);
     });
     return () => {
