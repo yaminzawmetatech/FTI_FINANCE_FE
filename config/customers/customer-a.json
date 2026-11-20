@@ -1,8 +1,0 @@
-{
-  "id": "customer-a",
-  "name": "Customer A",
-  "modules": [
-    "administration",
-    "credit-management"
-  ]
-}
